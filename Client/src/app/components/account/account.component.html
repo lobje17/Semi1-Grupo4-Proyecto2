@@ -1,0 +1,77 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark nav-pills nav-fill">
+    <div class="container">
+        <img src="https://cdn.svgporn.com/logos/amazon-chime.svg" width="50" height="50" alt="">
+        <div>
+            <input [(ngModel)]="search" name="search" type="text" class="form-control"
+                style="background-color: black; color: white;" placeholder="Search">
+        </div>
+        <div>
+            <button (click)="searchPost()" class="btn btn-outline-warning me-md-2" type="submit" style="position: relative;">Search</button>
+            <button (click)="goPagePost()" class="btn btn-outline-success me-md-2" type="submit" style="position: relative;">create post</button>
+            <button (click)="goPageUpdateInfo()" class="btn btn-outline-primary me-md-2" type="submit" style="position: relative;">Update information</button>
+            <button (click)="singOut()" class="btn btn-outline-danger me-md-2" type="submit" style="position: relative;">Sing out</button>
+
+        </div>
+    </div>
+</nav>
+
+<!---->
+<div class="container mt-5 d-grid gap-2  mx-auto ">
+    <div class="row justify-content-center">
+        <!-- MAS OPCIONES -->
+        <div class="col-2" style="color: white; align-items: center;">
+            <div class="container d-grid gap-2  mx-auto ">
+                <div class="row justify-content-center">
+                    <button type="submit" class="btn btn-outline-info btn-block">Todo</button>
+                </div>
+
+                <div class="row justify-content-center">
+                    <button type="submit" class="btn btn-outline-warning btn-block">Gráficas</button>
+                </div>
+
+                <div class="row justify-content-center">
+                    <button type="submit" class="btn btn-outline-light btn-block">Mapas</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- PUBLICACIONES -->
+        <div class="col-8" style="color: white; align-items: center;">
+            <div class="container">
+                <div class="row justify-content-center" *ngFor="let item of listPost">
+                    <div class="card bg-light mb-3">
+                        <div class="card-header" style="color: black;">
+                            <div class="row">
+                                <div class="col-2">
+                                    <img [src]="'http://localhost:5000/public/'+item.pictureU" class="card-img-top" style="min-width: 50px;  min-height: 50px;" alt="">
+                                </div>
+                                <div class="col">
+                                    <div>{{item.username}}</div>
+                                    <div>{{item.pictureP.split(".")[0]}}</div>
+                                </div>
+                            </div>
+                            </div>
+                        <div class="card-body">
+                            <img [src]="'http://localhost:5000/public/'+item.pictureP" class="card-img-top" alt="">
+                        </div>
+                        <div class="card-footer" style="color: black;">
+                            <div>{{item.coment}}</div>                            
+                        </div>
+                    </div>
+                    
+                    <br>
+                </div>                
+            </div>
+        </div>
+        <br>
+
+        <!-- CONECTADOS -->
+        <div class="col-2" style="color: white; align-items: center;">
+            <div class="container">
+                <div class="row justify-content-center">aqui 1</div>
+                <div class="row justify-content-center">aqui 2</div>
+                <div class="row justify-content-center">aqui 3</div>
+            </div>
+        </div>
+    </div>
+</div>
