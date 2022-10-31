@@ -13,8 +13,8 @@ import { VigilanteGuard } from './guards/vigilante.guard';
 const routes: Routes = [
   {
     path: 'account',
-    component: AccountComponent
-    //canActivate: [VigilanteGuard]
+    component: AccountComponent,
+    canActivate: [VigilanteGuard]
   },
   {
     path: 'chat',
