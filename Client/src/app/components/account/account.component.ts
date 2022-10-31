@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { postInterface } from 'src/app/models/post-interface';
 import { userInteface } from 'src/app/models/user-interface';
+import { users } from 'src/app/models/user-interface';
 import { PostsService } from 'src/app/services/posts.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -14,6 +15,7 @@ export class AccountComponent implements OnInit {
 
   constructor(private router:Router, private serviceU:UserService, private serviceP:PostsService) { }
   public listPost:postInterface[] = [];
+  public listUser:users[] = [];
   public search:string = "";
   ejecutar:number = 0;
 
