@@ -1,27 +1,239 @@
-# Server
+# Semi1-Grupo4-Proyecto1
+## Para correr el server de forma local estar en la carpeta src y ejecutar node index.js 
+# 1. Endpoint Registro de Usuarios 
+#### Información de método
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.6.
+| INFO  | |
+| :-----------      | :--------------------- |
+| **Url**           | https://localhost:3005/Registro          |
+| **Tipo Método**   | POST      |
+| **Header de petición**   | No aplica      |
 
-## Development server
+```javascript
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+{
+    "nombreUsuario" : "Armando",
+    "fotoURL" : "deben de mandar en base64",
+    "contrasenia" : "1234",
+    "correo" : "arma@gmail.com"
+}
+```
+### Response
+```javascript
 
-## Code scaffolding
+{
+    "message" : "Usuario Ingresado Correctamente",
+    "status" : "200",
+    "idUsuario" : "1"
+}
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+# 2. Endpoint Login
+#### Información de método
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+| INFO  | |
+| :-----------      | :--------------------- |
+| **Url**           | https://localhost:3005/Login          |
+| **Tipo Método**   | POST      |
+| **Header de petición**   | No aplica      |
 
-## Running unit tests
+```javascript
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+{
+    "correo": "arma@gmail.com",
+    "contrasenia": "1234"
+}
+```
 
-## Running end-to-end tests
+### Response
+```javascript
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+{
+    "message" : "Usuario logeado Correctamente",
+    "data": [
+        {
+            "Personid": 1,
+            "nombreUsuario": "EdsonArmando",
+            "correo": "arma@gmail.com",
+            "fotoperfil": "https://archivossemi1.s3.amazonaws.com/Semi/admin_EdsonArmando.jpg"
+        }
+        ],
+    "status" : "200"
+}
+```
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+# 3. Endpoint Subir Archivo
+#### Información de método
+
+| INFO  | 1 es publico 0 no es publico|
+| :-----------      | :--------------------- |
+| **Url**           | https://localhost:3005/SubirArchivo          |
+| **Tipo Método**   | POST      |
+| **Header de petición**   | No aplica      |
+
+```javascript
+
+{
+    "BASE64" : "",
+    "CONTENIDO" : "image/jpeg",
+    "NOMBRE": "test (1).jpg",
+    "PUBLICO" : 1,
+    "IdUsuario" : 1
+}
+```
+#### Respuesta
+```javascript
+
+{
+    "message": "Archivo Subido Correctamente",
+    "link": "https://archivossemi1.s3.amazonaws.com/Semi/Test.pdf",
+    "status": "200"
+}
+```
+
+# 4. Endpoint Agregar Amigo
+#### Información de método
+
+| INFO  | |
+| :-----------      | :--------------------- |
+| **Url**           | https://localhost:3005/AgregarAmigo          |
+| **Tipo Método**   | POST      |
+| **Header de petición**   | No aplica      |
+
+```javascript
+
+{
+    "IdAmigoEmisor" : 1,
+    "IdAmigoReceptor" : 3
+}
+```
+### Response
+```javascript
+
+{
+    "message" : "Amigo agregado Correctamente",
+    "status" : "200"
+}
+```
+
+
+# 5. Endpoint Listado Usuarios
+#### Información de método
+
+| INFO  | |
+| :-----------      | :--------------------- |
+| **Url**           | https://localhost:3005/Usuarios          |
+| **Tipo Método**   | GET      |
+| **Header de petición**   | No aplica      |
+
+### Response
+```javascript
+
+{
+    "message": "Listado de Usuarios",
+    "data": [
+        {
+            "Personid": 1,
+            "nombreUsuario": "EdsonArmando",
+            "correo": "arma@gmail.com",
+            "fotoperfil": "https://archivossemi1.s3.amazonaws.com/Semi/admin_EdsonArmando.jpg"
+        },
+        {
+            "Personid": 2,
+            "nombreUsuario": "Luciana",
+            "correo": "arma@gmail.com",
+            "fotoperfil": "https://archivossemi1.s3.amazonaws.com/Semi/admin_Luciana.jpg"
+        },
+        {
+            "Personid": 3,
+            "nombreUsuario": "Kyara",
+            "correo": "arma@gmail.com",
+            "fotoperfil": "https://archivossemi1.s3.amazonaws.com/Semi/admin_Kyara.jpg"
+        }
+    ],
+    "status": "200"
+}
+```
+
+# 6. Endpoint Archivos Privados
+#### Información de método
+
+| INFO  | |
+| :-----------      | :--------------------- |
+| **Url**           | http://localhost:3005/ArchivosPrivados/4          |
+| **Tipo Método**   | GET      |
+| **Header de petición**   | No aplica      |
+
+### Response
+```javascript
+
+{
+    "message": "Listado de Archivos",
+    "data": [
+        {
+            "idArchivo": 7,
+            "nombreArchivo": "Test1.pdf",
+            "isPublic": "0",
+            "URL": "https://archivossemi1.s3.amazonaws.com/Semi/Test1.pdf",
+            "Personid": 4
+        }
+    ],
+    "status": "200"
+}
+```
+
+# 7. Endpoint Archivos Publicos
+#### Información de método
+
+| INFO  | |
+| :-----------      | :--------------------- |
+| **Url**           | http://localhost:3005/ArchivosPublicos/4          |
+| **Tipo Método**   | GET      |
+| **Header de petición**   | No aplica      |
+
+### Response
+```javascript
+
+{
+    "message": "Listado de Archivos",
+    "data": [
+        {
+            "idArchivo": 7,
+            "nombreArchivo": "Test1.pdf",
+            "isPublic": "0",
+            "URL": "https://archivossemi1.s3.amazonaws.com/Semi/Test1.pdf",
+            "Personid": 4
+        }
+    ],
+    "status": "200"
+}
+```
+
+# 7. Endpoint Editar Archivos
+#### Información de método
+
+| INFO  | |
+| :-----------      | :--------------------- |
+| **Url**           | http://localhost:3005/EditarArchivo          |
+| **Tipo Método**   | PUT      |
+| **Header de petición**   | No aplica      |
+
+```javascript
+
+{"idArchivo":14,
+"nombreArchivo":"PruebaNueva",
+"visibilidad":1,
+"contrasenia":"mia123",
+"correo":"mia@gmail.com"}
+
+```
+### Response
+```javascript
+
+{
+    "message": "Archivos editado correctamente",
+    "status": "200"
+}
+```
