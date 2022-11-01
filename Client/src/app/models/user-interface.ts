@@ -15,3 +15,9 @@ export interface userInteface
     bot_mode: number,
     picture: string
 };
+
+export interface users
+{
+    name: string,
+    picture:string
+}

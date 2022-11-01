@@ -18,6 +18,7 @@ export class NewAccountComponent implements OnInit {
 
   name:string     = "";
   username:string = "";
+  email:string = "";
   picture:string  = "";
   password:string = "";
   confirm_password:string = "";
@@ -57,6 +58,11 @@ export class NewAccountComponent implements OnInit {
     {
       if(cadena!="") cadena += ", ";
       cadena +="username";
+    }
+    if(this.email=="" || this.email==" ")
+    {
+      if(cadena!="") cadena += ", ";
+      cadena +="email";
     }
     if(this.password=="" || this.password==" ")
     {
