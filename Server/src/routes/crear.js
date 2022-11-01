@@ -5,6 +5,7 @@ const AWS = require('aws-sdk');
 const s3 = new AWS.S3(keys.S3);
 const functions = require('./password')
 const database = require('../AWS/AWSKeys');
+const crypto = require("crypto");
 
 const rek = new AWS.Rekognition(keys.S3);
 const cognito = new AmazonCognitoIdentity.CognitoUserPool(keys.cognito);
@@ -21,10 +22,53 @@ const router = Router();
 */
 router.post('/Registro',async(req, res) => {    
     let {correo,contrasenia,fotoURL,nombreUsuario} = req.body
-    let password = functions.generatePassword();
+    var crypto = require('crypto');
+    var hash = crypto.createHash('sha256').update(req.body.contrasenia).digest('hex');
     const connection  = database.Open();
     let query = `INSERT INTO Usuario 
         (nombreUsuario, correo,contrasenia,fotoperfil) VALUES (?, ? , ?, ?);`;
+
+    ///======================================SigUp AWS ==========================================
+    var attributelist = [];
+
+    var dataname = {
+        Name: 'custom:name',
+        Value: nombreUsuario,
+    };
+    var attributename = new AmazonCognitoIdentity.CognitoUserAttribute(dataname);
+
+    attributelist.push(attributename);
+
+    var dataemail = {
+        Name: 'email',
+        Value: correo,
+    };
+    var attributeemail = new AmazonCognitoIdentity.CognitoUserAttribute(dataemail);
+
+    attributelist.push(attributeemail);
+
+    var datacarnet = {
+        Name: 'custom:carnet',
+        Value: nombreUsuario+"12",
+    };
+    var attributecarnet = new AmazonCognitoIdentity.CognitoUserAttribute(datacarnet);
+
+    attributelist.push(attributecarnet);
+
+
+    console.log(attributelist);
+
+    cognito.signUp(nombreUsuario, hash+"D**", attributelist, null, async (err, data) => {
+
+        if (err) {
+            console.log(err);
+
+            res.json(err.message || err);
+            return;
+        }
+        console.log(data);
+    });
+    //============================================================================================
     //Subir foto
     let decodedImage = Buffer.from(fotoURL, 'base64');
     let bucket = 'semichat';
@@ -45,7 +89,7 @@ router.post('/Registro',async(req, res) => {
       fotoaws = uploadedImage.Location;
     // Value to be inserted
     connection.query(query, [nombreUsuario,
-        correo,contrasenia, fotoaws], (err, rows) => {
+        correo,hash, fotoaws], (err, rows) => {
         if (err) throw err;
         console.log("Row inserted with id = "
             + rows.insertId);
@@ -58,7 +102,7 @@ router.post('/Registro',async(req, res) => {
 });
 
 //Login
-router.post('/Login',async(req, res) => {
+router.post('/Login2',async(req, res) => {
     const connection  = database.Open();
     let {correo,contrasenia} = req.body
     var sql = 'SELECT Personid, nombreUsuario,correo, fotoperfil FROM Usuario WHERE contrasenia = ? and correo = ?';
@@ -212,7 +256,7 @@ router.post('/detectarcara', function (req, res) {
 //Cognito
 //Amazon Cognito
 
-router.post("/api/login", async (req, res) => {
+router.post("/login", async (req, res) => {
     var crypto = require('crypto');
     var hash = crypto.createHash('sha256').update(req.body.password).digest('hex');
     var authenticationData = {

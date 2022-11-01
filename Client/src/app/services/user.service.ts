@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { userInteface } from "../models/user-interface";
-import { map } from "rxjs/operators";
+import { map, tap } from "rxjs/operators";
 import { Router } from "@angular/router";
 import Swal from 'sweetalert2';
 
@@ -12,6 +12,7 @@ export class UserService {
 
   images:any;
   multipleImages = [];
+  private httpClient: any;
   constructor(private router:Router, private http: HttpClient) { }
 
   headers: HttpHeaders = new HttpHeaders({
@@ -27,7 +28,7 @@ export class UserService {
 
   LogIn(username:string, password:string)
   {
-    const url = "http://localhost:5000/login";
+    const url = "http://localhost:3005/login";
     return this.http.post<any>(
       url, {
         "username":username,
@@ -38,16 +39,25 @@ export class UserService {
       }
     ).pipe(map(data=>data));
   }
+  public UploadFile(data : any){
+    const url = "http://localhost:3005/SubirArchivo";
+    return this.http.post<any>(
+      url, data,
+      {
+        headers: this.headers
+      }
+    ).pipe(map(data=>data));
+  }
 
-  CreateUser(name:string, username:string, password:string, picture:string)
+  CreateUser(nombreUsuario:string, correo:string, contrasenia:string, fotoURL:string)
   {
-    const url = "http://localhost:5000/createAccount";
+    const url = "http://localhost:3005/Registro";
     return this.http.post<any>(
       url, {
-        "name":name,
-        "username":username,
-        "password":password,
-        "picture":picture
+        "nombreUsuario":nombreUsuario,
+        "correo":correo,
+        "contrasenia":contrasenia,
+        "fotoURL":fotoURL
       },
       {
         headers: this.headers
@@ -108,6 +118,6 @@ export class UserService {
             title: 'Usuario',
             text: info,
             footer: ''
-          }) 
+          })
   }
 }

@@ -25,22 +25,27 @@ export class LoginComponent implements OnInit {
     if(this.fields_filled())
     {
       this.service.LogIn(this.username, this.password).subscribe((res)=>{
+        let accces = '';
+        try {
+          accces = res.idToken.jwtToken
+        }catch (err){}
+
         //console.log(res['info']);
         //console.log(res);
-        if(res['ok'])
+        if(accces != '')
         {
-          this.show_message('success', 'Welcome '+res['info']["name"] + '');
+          this.show_message('success', 'Welcome '+this.username + '');
           /* SE ALMACENA EL COOKIE PARA EL BLOQUEO */
           // this.cookieService.set('token_access',res['info'], 4, '/');
           /* SE ALMACENA LOS DATOS CON EL FORMATO ESTABLECIDO */
           let castnfo:userInteface = res['info'];
           this.service.setCurrentUser(castnfo);
-          
+
           this.router.navigate(['account']);
         }
         else
         {
-          this.show_message('error', res['info']);
+          this.show_message('error', res.name);
         }
       })
     }
@@ -53,7 +58,7 @@ export class LoginComponent implements OnInit {
             title: 'Iniciar sesión',
             text: info,
             footer: '<a href="http://localhost:4200/newaccount"></a>'
-          }) 
+          })
   }
 
   /* CAMPOS LLENOS */
@@ -71,7 +76,7 @@ export class LoginComponent implements OnInit {
       cadena +="password";
     }
 
-    if(cadena!="") 
+    if(cadena!="")
     {
       Swal.fire({
         icon: 'warning',
