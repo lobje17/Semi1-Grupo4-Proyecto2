@@ -4,7 +4,11 @@
     <list default="true" id="4f5afc86-ce3d-499f-b864-7d3d734d6620" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/src/app/components/account/account.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/app/components/account/account.component.ts" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/Client/src/app/components/chat/chat.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/app/components/chat/chat.component.ts" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/Client/src/app/services/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/app/services/user.service.ts" afterDir="false" />
+>>>>>>> 741c6bb (Vista publicaciones)
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,8 +56,12 @@
       <workItem from="1667095691564" duration="7972000" />
       <workItem from="1667185482552" duration="5171000" />
       <workItem from="1667265762171" duration="3334000" />
+<<<<<<< HEAD
       <workItem from="1667328816691" duration="10868000" />
       <workItem from="1667351072210" duration="1402000" />
+=======
+      <workItem from="1667328816691" duration="10776000" />
+>>>>>>> 741c6bb (Vista publicaciones)
     </task>
     <servers />
   </component>

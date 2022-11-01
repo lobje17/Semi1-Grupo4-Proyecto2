@@ -4,7 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { userInteface } from "../../models/user-interface";
-import Swal from "sweetalert2";
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-information',
   templateUrl: './information.component.html',

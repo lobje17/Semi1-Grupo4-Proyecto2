@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { postInterface } from 'src/app/models/post-interface';
 import { userInteface } from 'src/app/models/user-interface';
-import { users } from 'src/app/models/user-interface';
 import { PostsService } from 'src/app/services/posts.service';
 import { UserService } from 'src/app/services/user.service';
 import {Observable} from "rxjs";
@@ -15,17 +14,13 @@ import {Observable} from "rxjs";
 export class AccountComponent implements OnInit {
 
   constructor(private router:Router, public serviceU:UserService, public serviceP:PostsService) { }
-  public listPost:any;
-  public listUser:users[] = [];
-
+  public listPost: any;
   public search:string = "";
   ejecutar:number = 0;
 
   ngOnInit(): void
   {
-    console.log(this.listUser);
-    // LINEA PARA CARGAR LA LISTA USUARIOS
-    //if(this.ejecutar==0)this.updatePosts();
+    if(this.ejecutar==0)this.updatePosts();
   }
 
   updatePosts()
@@ -39,17 +34,6 @@ export class AccountComponent implements OnInit {
   }
   getImage(): String {
     return this.serviceU.getURL();
-  }
-
-  updateListUser()
-  {
-    let u:userInteface = this.serviceU.getCurrentStorage();
-    this.serviceP.getPosts(u.username).subscribe((res)=>
-    {
-      //console.log(res);
-      this.listUser = res['data'];
-      console.log(this.listUser);
-    })
   }
 
   searchPost()
@@ -94,11 +78,6 @@ export class AccountComponent implements OnInit {
   goPagePost()
   {
     this.router.navigate(['publicacion']);
-  }
-
-  goPageChat()
-  {
-    this.router.navigate(['chat']);
   }
 
   singOut()

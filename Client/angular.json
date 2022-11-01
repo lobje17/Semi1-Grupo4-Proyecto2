@@ -32,7 +32,7 @@
             ],
             "scripts": [],
             "allowedCommonJsDependencies": [
-              "sweetalert2"
+              "lodash"
             ]
           },
           "configurations": {

@@ -6,9 +6,9 @@
                 style="background-color: black; color: white;" placeholder="Search">
         </div>
         <div>
-            <button (click)="searchPost()" class="btn btn-outline-success me-md-2" type="submit" style="position: relative;">Search</button>
-            <!-- button (click)="goPagePost()" class="btn btn-outline-success me-md-2" type="submit" style="position: relative;">create post</button -->
-            <!-- button (click)="goPageUpdateInfo()" class="btn btn-outline-primary me-md-2" type="submit" style="position: relative;">Update information</button -->
+            <button (click)="searchPost()" class="btn btn-outline-warning me-md-2" type="submit" style="position: relative;">Search</button>
+            <button (click)="goPagePost()" class="btn btn-outline-success me-md-2" type="submit" style="position: relative;">create post</button>
+            <button (click)="goPageUpdateInfo()" class="btn btn-outline-primary me-md-2" type="submit" style="position: relative;">Update information</button>
             <button (click)="singOut()" class="btn btn-outline-danger me-md-2" type="submit" style="position: relative;">Sing out</button>
 
         </div>
@@ -22,15 +22,15 @@
         <div class="col-2" style="color: white; align-items: center;">
             <div class="container d-grid gap-2  mx-auto ">
                 <div class="row justify-content-center">
-                    <button (click)="goPagePost()" type="submit" class="btn btn-outline-warning btn-block">create post</button>
+                    <button type="submit" class="btn btn-outline-info btn-block">Todo</button>
                 </div>
 
                 <div class="row justify-content-center">
-                    <button (click)="goPageUpdateInfo()" type="submit" class="btn btn-outline-light btn-block">Update information</button>
+                    <button type="submit" class="btn btn-outline-warning btn-block">Gráficas</button>
                 </div>
 
                 <div class="row justify-content-center">
-                    <button (click)="goPageChat()" type="submit" class="btn btn-outline-info btn-block">Chat</button>
+                    <button type="submit" class="btn btn-outline-light btn-block">Mapas</button>
                 </div>
             </div>
         </div>
@@ -49,15 +49,12 @@
                                     <div>{{this.serviceU.getName()}}</div>
                                 </div>
                             </div>
-                        </div>
+                            </div>
                         <div class="card-body">
                             <img [src]="item.URL" class="card-img-top" alt="">
                         </div>
                         <div class="card-footer" style="color: black;">
                             <div>{{item.Descripcion}}</div>
-                        </div>
-                        <div class="row justify-content-center">
-                            <button type="submit" class="btn-outline-warning btn">Traducir</button>
                         </div>
                     </div>
 
@@ -69,29 +66,10 @@
 
         <!-- CONECTADOS -->
         <div class="col-2" style="color: white; align-items: center;">
-            <div class="scrollbar scrollbar-primary">
-                <div class="container">
-                    <div class="row justify-content-center" *ngFor="let item of listUser">
-                        <div class="card bg-light mb-3">
-                            <div class="card-header" style="color: black;">
-                                <div class="row">
-                                    <div class="col-2">
-                                        <!-- CODIGO PARA LA IMAGEN DEL USUARIO -->
-                                        <!-- <img [src]="'http://localhost:5000/public/'+item.picture" class="card-img-top" style="min-width: 50px;  min-height: 50px;" alt=""> -->
-                                    </div>
-                                    <div class="col">
-                                        <div>{{item.name}}</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <button type="button" class="btn btn-outline-primary btn-sm">Enviar solicitud</button>                            
-                            </div>
-                        </div>
-                        
-                        <br>
-                    </div>
-                </div>
+            <div class="container">
+                <div class="row justify-content-center">aqui 1</div>
+                <div class="row justify-content-center">aqui 2</div>
+                <div class="row justify-content-center">aqui 3</div>
             </div>
         </div>
     </div>
