@@ -100,6 +100,11 @@ export class AccountComponent implements OnInit {
     this.router.navigate(['publicacion']);
   }
 
+  goPageChat()
+  {
+    this.router.navigate(['chat']);
+  }
+
   singOut()
   {
     this.serviceU.singOut();

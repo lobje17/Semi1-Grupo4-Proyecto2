@@ -1,1 +1,104 @@
-<p>chat works!</p>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark nav-pills nav-fill">
+    <div class="container">
+        <img src="https://cdn.svgporn.com/logos/amazon-chime.svg" width="50" height="50" alt="">
+        <div>
+            <button (click)="goPageAccount()" class="btn btn-outline-primary me-md-2" type="submit" style="position: relative;">Profile</button>
+            <button (click)="singOut()" class="btn btn-outline-danger me-md-2" type="submit" style="position: relative;">Sing out</button>
+        </div>
+    </div>
+</nav>
+
+<!---->
+<div class="container mt-5 d-grid gap-2  mx-auto">
+    <div class="row justify-content-center">
+        
+        <!-- SOLICITUDES -->
+        <div class="col-2" style="color: white; align-items: center;">
+            <h1 class="row justify-content-center" style="color: white; align-items: center;">Solicitudes</h1>
+            <div class="scrollbar scrollbar-primary">
+                <div class="container">
+                    <div class="row justify-content-center" *ngFor="let item of listRequest">
+                        <div class="card bg-light mb-3">
+                            <div class="card-header" style="color: black;">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <!-- CODIGO PARA LA IMAGEN DEL USUARIO -->
+                                        <!-- <img [src]="'http://localhost:5000/public/'+item.picture" class="card-img-top" style="min-width: 50px;  min-height: 50px;" alt=""> -->
+                                    </div>
+                                    <div class="col">
+                                        <div>{{item.name}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="btn-group btn-group-toggle">
+                                    <div class="col-sm">
+                                        <button type="submit" class="btn btn-outline-success btn-sm" style="position: relative;">Accept</button>   
+                                    </div>
+                                    <div class="col-sm">
+                                        <button type="submit" class="btn btn-outline-danger btn-sm" style="position: relative;">Decline</button>    
+                                    </div>  
+                                </div>         
+                            </div>
+                        </div>
+                        
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--  -->
+        <div class="col-1" style="color: white; align-items: center;">
+        </div>
+        <!-- CHAT -->
+        <div class="col-6" style="color: white; align-items: center;">
+            <div class="container">
+                
+                <h1 class="row justify-content-center" style="color: white; align-items: center;">Chat</h1>
+                <form>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <textarea rows="20" class="form-control" id="comment"></textarea>
+                        </div>
+                        <br>
+                        <div class="form-group col-md-12  justify-content-center" style="align-items: center;">
+                            <input type="text" class="form-control" style="position: relative;">  
+                            <button type="submit" class="btn btn-primary btn-sm">Send</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br>
+
+        <!-- CONECTADOS -->
+        <div class="col-2" style="color: white; align-items: center;">
+            <h1 class="row justify-content-center" style="color: white; align-items: center;">Amigos</h1>
+            <div class="scrollbar scrollbar-primary">
+                <div class="container">
+                    <div class="row justify-content-center" *ngFor="let item of listUser">
+                        <div class="card bg-light mb-3">
+                            <div class="card-header" style="color: black;">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <!-- CODIGO PARA LA IMAGEN DEL USUARIO -->
+                                        <!-- <img [src]="'http://localhost:5000/public/'+item.picture" class="card-img-top" style="min-width: 50px;  min-height: 50px;" alt=""> -->
+                                    </div>
+                                    <div class="col">
+                                        <div>{{item.name}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="button" class="btn btn-outline-primary btn-sm">Message</button>                            
+                            </div>
+                        </div>
+                        
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
