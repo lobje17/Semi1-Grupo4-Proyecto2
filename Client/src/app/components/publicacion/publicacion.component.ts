@@ -12,7 +12,8 @@ import { delay } from 'rxjs/operators';
   styleUrls: ['./publicacion.component.css']
 })
 export class PublicacionComponent implements OnInit {
-
+  archivocargado:File | undefined;
+  photo2 : string | ArrayBuffer | any;
  constructor(private router:Router, private serviceU:UserService, private serviceP:PostsService, private sanitizer:DomSanitizer) { }
 
   ngOnInit(): void {
@@ -31,16 +32,15 @@ export class PublicacionComponent implements OnInit {
       let u:userInteface = this.serviceU.getCurrentStorage();
       this.tags = this.tags.toLocaleLowerCase();
       this.tags = this.tags.replace(/ /g, "");
-      
-      this.serviceP.createPost(this.picture, this.comment, this.tags, u.username).subscribe((res)=>
+      this.serviceP.createPost(this.photo2.BASE64,this.photo2.CONTENIDO, this.comment, this.tags,this.serviceU.getId()).subscribe((res)=>
       {
         this.uploadFile()
-        if(res['ok']) 
+        if(res.status == '200')
         {
           delay(100000000)
-          this.serviceU.show_message('success', res['data']);
+          this.serviceU.show_message('success', res);
         }
-        else this.serviceU.show_message('error', res['data']);        
+        else this.serviceU.show_message('error', res);
       })
       //console.log(this.picture,  this.comment, this.tags);
       this.goPageProfile();
@@ -51,15 +51,37 @@ export class PublicacionComponent implements OnInit {
     }
   }
 
-  async getPicture(event:any)
-  {    
+  async getPicture(event:any) {
     const getPath = event.target.files[0];
     this.picture = getPath['name'];
-    
-    this.extraerBase64(getPath).then((imagen:any) =>{
+
+    this.extraerBase64(getPath).then((imagen: any) => {
       this.previsualizacion = imagen.Base;
     })
     this.archivos.push(getPath);
+    //
+    this.archivocargado = event.target.files[0];
+    let reader = new FileReader();
+    // @ts-ignore
+    reader.readAsDataURL(this.archivocargado);
+    // @ts-ignore
+    let nameImage = this.archivocargado.name.toString();
+    let filetype = this.archivocargado?.type.toString();
+    let filebase64: any = "";
+
+    reader.onload = (event2: any) => {
+      filebase64 = reader.result?.toString();
+      filebase64 = filebase64.replace(/data:.+?,/, "");
+
+      let dataImage = {
+        "PUBLICO" : 1,
+        "IdUsuario" : 1,
+        NOMBRE : nameImage,
+        CONTENIDO : filetype,
+        BASE64 : filebase64
+      };
+      this.photo2 = dataImage;
+    }
   }
 
   extraerBase64 = async($event:any)=>new Promise((resolve, reject) =>
@@ -72,9 +94,9 @@ export class PublicacionComponent implements OnInit {
       reader.readAsDataURL($event);
       reader.onload = ()=> { resolve({ Base: reader.result }); }
       reader.onerror = error => { resolve({ Base: null }); }
-    } 
+    }
     catch (error) {
-      console.log(error);      
+      console.log(error);
     }
   })
 
@@ -82,11 +104,11 @@ export class PublicacionComponent implements OnInit {
   {
     try {
       const formPicture = new FormData();
-      this.archivos.forEach((archivo:any) => 
+      this.archivos.forEach((archivo:any) =>
       {
         formPicture.append('myfile', archivo);
       });
-      
+
       this.serviceU.upload(formPicture).subscribe((res)=>{
         console.log(res);
       })

@@ -103,6 +103,12 @@ export class UserService {
     if(user_s != null && user_s != undefined) return JSON.parse(user_s);
     return null;
   }
+  getId() : number
+  {
+    let user_s:any = localStorage.getItem('User_logger');
+    let data = JSON.parse(user_s);
+    return data.dataUser[0].Personid;
+  }
 
   singOut()
   {

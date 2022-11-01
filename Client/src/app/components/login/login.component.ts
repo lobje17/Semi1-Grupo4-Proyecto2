@@ -25,9 +25,10 @@ export class LoginComponent implements OnInit {
     if(this.fields_filled())
     {
       this.service.LogIn(this.username, this.password).subscribe((res)=>{
+        console.log(res)
         let accces = '';
         try {
-          accces = res.idToken.jwtToken
+          accces = res.result.idToken.jwtToken
         }catch (err){}
 
         //console.log(res['info']);
@@ -38,7 +39,7 @@ export class LoginComponent implements OnInit {
           /* SE ALMACENA EL COOKIE PARA EL BLOQUEO */
           // this.cookieService.set('token_access',res['info'], 4, '/');
           /* SE ALMACENA LOS DATOS CON EL FORMATO ESTABLECIDO */
-          let castnfo:userInteface = res['info'];
+          let castnfo:userInteface = res;
           this.service.setCurrentUser(castnfo);
 
           this.router.navigate(['account']);

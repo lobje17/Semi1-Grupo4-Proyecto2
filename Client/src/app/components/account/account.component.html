@@ -43,11 +43,11 @@
                         <div class="card-header" style="color: black;">
                             <div class="row">
                                 <div class="col-2">
-                                    <img [src]="'http://localhost:5000/public/'+item.pictureU" class="card-img-top" style="min-width: 50px;  min-height: 50px;" alt="">
+                                    <img [src]="item.URL" class="card-img-top" style="min-width: 50px;  min-height: 50px;" alt="">
                                 </div>
                                 <div class="col">
-                                    <div>{{item.username}}</div>
-                                    <div>{{item.pictureP.split(".")[0]}}</div>
+                                    <div>{{item.nombrePublicacion}}</div>
+                                    <div>{{item.Descripcion}}</div>
                                 </div>
                             </div>
                             </div>
@@ -55,12 +55,12 @@
                             <img [src]="'http://localhost:5000/public/'+item.pictureP" class="card-img-top" alt="">
                         </div>
                         <div class="card-footer" style="color: black;">
-                            <div>{{item.coment}}</div>                            
+                            <div>{{item.coment}}</div>
                         </div>
                     </div>
-                    
+
                     <br>
-                </div>                
+                </div>
             </div>
         </div>
         <br>

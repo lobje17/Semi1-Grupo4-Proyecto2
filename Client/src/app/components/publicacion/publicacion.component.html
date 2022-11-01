@@ -4,21 +4,21 @@
 
         <div>
             <button (click)="createPost()"
-                    class="btn btn-outline-success me-md-2" 
-                    type="submit" 
+                    class="btn btn-outline-success me-md-2"
+                    type="submit"
                     style="position: relative;">
                     Post photos
             </button>
 
-            <button (click)="goPageProfile()" 
-                    class="btn btn-outline-primary me-md-2" 
+            <button (click)="goPageProfile()"
+                    class="btn btn-outline-primary me-md-2"
                     type="submit"
                     style="position: relative;">
                     Profile
             </button>
 
-            <button (click)="singOut()" 
-                    class="btn btn-outline-danger me-md-2" 
+            <button (click)="singOut()"
+                    class="btn btn-outline-danger me-md-2"
                     type="submit"
                     style="position: relative;">
                     Sing out
@@ -33,7 +33,7 @@
         <div class="col-3" style="color: white; align-items: center;">
             <div class="container d-grid gap-2  mx-auto ">
                 <div class="row justify-content-center">
-                    
+
                 </div>
             </div>
         </div>
@@ -41,34 +41,34 @@
             <form>
                 <div class="row">
                     <div class="col-1">
-                        <label style="color: turquoise;">Commentary</label>
+                        <label style="color: turquoise;">Nombre</label>
                     </div>
-                
+
                     <div class="col-7">
-                        <input 
-                            [(ngModel)]="comment" 
+                        <input
+                            [(ngModel)]="comment"
                             name="comment"
                             type="text"
-                            class="form-control" 
+                            class="form-control"
                             id="floatingTextarea"
-                            style="background-color: black; color: white;">                        
+                            style="background-color: black; color: white;">
                     </div>
                 </div>
-            
+
                 <br>
                 <div class="row">
                     <div class="col-1">
-                        <label style="color: turquoise;">Tags</label>
+                        <label style="color: turquoise;">Descripcion</label>
                     </div>
                     <div class="col-7">
-                        <input [(ngModel)]="tags" 
-                        name="tags" 
-                        type="text" 
+                        <input [(ngModel)]="tags"
+                        name="tags"
+                        type="text"
                         class="form-control"
                         style="background-color: black; color: white;">
-                    </div>               
+                    </div>
                 </div>
-            
+
                 <br>
                 <div class="col-8">
                     <div class="mb-3">
@@ -84,6 +84,11 @@
                     </div>
                 </div>
                 <br>
+
+              <br>
+              <div class="d-grid gap-2">
+                <button (click)="createPost()" type="submit" class="btn btn-primary btn-block ">Create Post</button>
+              </div>
                 <br>
             </form>
         </div>

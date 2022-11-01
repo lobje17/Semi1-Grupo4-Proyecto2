@@ -11,14 +11,14 @@ import { Router } from "@angular/router";
 export class PostsService {
 
   constructor(private router:Router, private http: HttpClient) { }
-  
+
   headers: HttpHeaders = new HttpHeaders({
     "Content-Type": "application/json"
   })
 
-  getPosts(username:string)
+  getPosts(username:number)
   {
-    const url = "http://localhost:5000/getPosts";
+    const url = "http://localhost:3005/getPosts";
     return this.http.post<any>(
       url, {
         "username":username
@@ -29,16 +29,17 @@ export class PostsService {
     ).pipe(map(data=>data));
   }
 
-  createPost(picture:string, comment:string, tags:string, username:string)
+  createPost(BASE64:string, CONTENIDO:string, NOMBRE:string, DESCRIPCION:string,IdUsuario: number)
   {
 
-    const url = "http://localhost:5000/createPost";
+    const url = "http://localhost:3005/Publicacion";
     return this.http.post<any>(
       url, {
-        "picture":picture,
-        "coment":comment,
-        "tags":tags,
-        "username":username
+        "BASE64":BASE64,
+        "CONTENIDO":CONTENIDO,
+        "NOMBRE":NOMBRE,
+        "DESCRIPCION":DESCRIPCION,
+        "IdUsuario" : IdUsuario
       },
       {
         headers: this.headers

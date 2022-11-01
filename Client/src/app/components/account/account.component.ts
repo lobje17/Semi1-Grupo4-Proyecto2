@@ -13,23 +13,22 @@ import { UserService } from 'src/app/services/user.service';
 export class AccountComponent implements OnInit {
 
   constructor(private router:Router, private serviceU:UserService, private serviceP:PostsService) { }
-  public listPost:postInterface[] = [];
+  public listPost: any;
   public search:string = "";
   ejecutar:number = 0;
 
-  ngOnInit(): void 
+  ngOnInit(): void
   {
     if(this.ejecutar==0)this.updatePosts();
   }
 
   updatePosts()
   {
-    let u:userInteface = this.serviceU.getCurrentStorage();
-    this.serviceP.getPosts(u.username).subscribe((res)=>
+    this.serviceP.getPosts(this.serviceU.getId()).subscribe((res)=>
     {
       //console.log(res);
-      this.listPost = res['data'];
-      console.log(this.listPost);
+      this.listPost = res.data;
+      console.log(res.data);
     })
   }
 
@@ -64,14 +63,14 @@ export class AccountComponent implements OnInit {
       this.serviceU.show_message('info', "Debe ingresar un tag para buscar")
       this.ngOnInit();
     }
-    //console.log("Esto esta en seach", this.search);      
+    //console.log("Esto esta en seach", this.search);
   }
 
   goPageUpdateInfo()
   {
     this.router.navigate(['updateinfo']);
   }
-  
+
   goPagePost()
   {
     this.router.navigate(['publicacion']);

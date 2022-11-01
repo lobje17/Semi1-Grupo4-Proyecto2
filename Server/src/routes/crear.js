@@ -133,11 +133,11 @@ router.post('/Login2',async(req, res) => {
 }
 
 */
-router.post('/SubirArchivo',async(req, res) => {
+router.post('/Publicacion',async(req, res) => {
     const connection  = database.Open();
-    let {BASE64,CONTENIDO,NOMBRE,PUBLICO,IdUsuario} = req.body
-    let query = `INSERT INTO Archivo 
-        (nombreArchivo, isPublic,URL,Personid) VALUES (?, ? , ?, ?);`;
+    let {BASE64,CONTENIDO,NOMBRE,DESCRIPCION,IdUsuario} = req.body
+    let query = `INSERT INTO Publicacion 
+        (nombrePublicacion, Descripcion,URL,Personid) VALUES (?, ? , ?, ?);`;
     //Subir foto
     let decodedImage = Buffer.from(BASE64, 'base64');
     let bucket = 'semichat';
@@ -159,7 +159,7 @@ router.post('/SubirArchivo',async(req, res) => {
       fotoaws = uploadedImage.Location;
       // Value to be inserted
     connection.query(query, [NOMBRE,
-        PUBLICO,fotoaws, IdUsuario], (err, rows) => {
+        DESCRIPCION,fotoaws, IdUsuario], (err, rows) => {
         if (err) throw err;
         console.log("Row inserted with id = "
             + rows.insertId);
@@ -220,6 +220,25 @@ router.get('/Usuarios',async(req, res) => {
         }
 })
 });
+//Login
+router.post('/getPosts',async(req, res) => {
+    const connection  = database.Open();
+    var sql = 'select * from Publicacion';
+    connection.query(sql, function (err, result) {
+        if (result.length == 0){
+            res.json({
+                message: 'Post no se encuentra',
+                status : '400'
+            })
+        }else{
+            res.json({
+                message: 'Listado de Post',
+                data : result,
+                status : '200'
+            })
+        }
+    })
+});
 
 /*
 Rekogniton
@@ -259,35 +278,41 @@ router.post('/detectarcara', function (req, res) {
 router.post("/login", async (req, res) => {
     var crypto = require('crypto');
     var hash = crypto.createHash('sha256').update(req.body.password).digest('hex');
-    var authenticationData = {
-        Username: req.body.username,
-        Password: hash+"D**"
-    };
-    var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(
-        authenticationData
-    );
-    var userData = {
-        Username: req.body.username,
-        Pool: cognito,
-    };
-    var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
-    cognitoUser.setAuthenticationFlowType('USER_PASSWORD_AUTH');
+    ////////////////////////////////////////////////////////////////////
+    let idUsuario ;
+    const connection  = database.Open();
+    var sql = 'SELECT Personid, nombreUsuario,correo, fotoperfil FROM Usuario WHERE contrasenia = ? and nombreUsuario = ?';
+    connection.query(sql, [ hash,  req.body.username], function (err, result2) {
+        var authenticationData = {
+            Username: req.body.username,
+            Password: hash+"D**"
+        };
+        var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(
+            authenticationData
+        );
+        var userData = {
+            Username: req.body.username,
+            Pool: cognito,
+        };
+        var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+        cognitoUser.setAuthenticationFlowType('USER_PASSWORD_AUTH');
 
-    cognitoUser.authenticateUser(authenticationDetails, {
-        onSuccess: function (result) {
-            // User authentication was successful
-            res.json(result); //
-        },
-        onFailure: function (err) {
-            // User authentication was not successful
-            res.json(err);
-        },
-        mfaRequired: function (codeDeliveryDetails) {
-            // MFA is required to complete user authentication.
-            // Get the code from user and call
-            cognitoUser.sendMFACode(verificationCode, this);
-        },
-    });
+        cognitoUser.authenticateUser(authenticationDetails, {
+            onSuccess: function (result) {
+                // User authentication was successful
+                res.json({result: result , dataUser : result2})
+            },
+            onFailure: function (err) {
+                // User authentication was not successful
+                res.json(err);
+            },
+            mfaRequired: function (codeDeliveryDetails) {
+                // MFA is required to complete user authentication.
+                // Get the code from user and call
+                cognitoUser.sendMFACode(verificationCode, this);
+            },
+        });
+    })
 });
 
 router.post("/api/signup", async (req, res) => {
