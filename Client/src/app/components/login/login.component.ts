@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { userInteface } from 'src/app/models/user-interface';
 import { UserService } from 'src/app/services/user.service';
 import { CookieService } from "ngx-cookie-service";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-login',
