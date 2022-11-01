@@ -109,6 +109,19 @@ export class UserService {
     let data = JSON.parse(user_s);
     return data.dataUser[0].Personid;
   }
+  getName() : String
+  {
+    let user_s:any = localStorage.getItem('User_logger');
+    let data = JSON.parse(user_s);
+    return data.dataUser[0].nombreUsuario;
+  }
+  getURL() : String
+  {
+    let user_s:any = localStorage.getItem('User_logger');
+    let data = JSON.parse(user_s);
+    return data.dataUser[0].fotoperfil;
+  }
+
 
   singOut()
   {

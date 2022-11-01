@@ -4,6 +4,7 @@ import { postInterface } from 'src/app/models/post-interface';
 import { userInteface } from 'src/app/models/user-interface';
 import { PostsService } from 'src/app/services/posts.service';
 import { UserService } from 'src/app/services/user.service';
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-account',
@@ -12,7 +13,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class AccountComponent implements OnInit {
 
-  constructor(private router:Router, private serviceU:UserService, private serviceP:PostsService) { }
+  constructor(private router:Router, public serviceU:UserService, public serviceP:PostsService) { }
   public listPost: any;
   public search:string = "";
   ejecutar:number = 0;
@@ -30,6 +31,9 @@ export class AccountComponent implements OnInit {
       this.listPost = res.data;
       console.log(res.data);
     })
+  }
+  getImage(): String {
+    return this.serviceU.getURL();
   }
 
   searchPost()
