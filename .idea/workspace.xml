@@ -1,69 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4f5afc86-ce3d-499f-b864-7d3d734d6620" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Client/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/Client/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/.browserslistrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/Server/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Server/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/angular.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/karma.conf.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Server/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Server/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/app/app-routing.module.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/app/app.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/app/app.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/app/app.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/app/app.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/app/app.module.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/assets/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/0ecef659-f012-4185-954d-104abb543f20.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/152911-anime-city-wallpaper-1920x1080-for-android-tablet.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/152914-anime-city-wallpaper-1920x1080-image.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/152921-anime-city-wallpaper-1920x1080-images.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/244780-download-free-anime-city-wallpaper-1920x1200.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/244786-most-popular-anime-city-wallpaper-1920x1080-lockscreen.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/244790-widescreen-anime-city-wallpaper-1920x1080.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/244795-cool-anime-city-wallpaper-1920x1200.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/244798-anime-city-wallpaper-2000x1500-for-htc.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/244799-anime-city-wallpaper-1920x1200-full-hd.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/244810-beautiful-anime-city-wallpaper-2560x1702-htc.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/265620-anime-city-wallpaper-2500x1500-for-4k.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/51e65eb2207eab6e6443517d7c8abd07.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/8uxBwW.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/918b7a78-bb12-45c9-8bc7-cc5805fd4c5d.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/Castle_003.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/cod1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/cod3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/cod4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/cod5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/fondo2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/fondo3.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/fondo4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/fondo5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/fondo6.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/pSngiUS.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/wallpaper-2915737.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/config/settingdb.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/controllers/posts-controller.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/controllers/user-controller.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/environments/environment.prod.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/environments/environment.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/polyfills.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/routes/person-rotes.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/routes/posts-route.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/routes/user-route.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/run/runInit.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/styles.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/test.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/tsconfig.app.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/tsconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/tsconfig.spec.json" beforeDir="false" />
-    </list>
+    <list default="true" id="4f5afc86-ce3d-499f-b864-7d3d734d6620" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
