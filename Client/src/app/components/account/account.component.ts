@@ -15,13 +15,23 @@ export class AccountComponent implements OnInit {
 
   constructor(private router:Router, private serviceU:UserService, private serviceP:PostsService) { }
   public listPost:postInterface[] = [];
-  public listUser:users[] = [];
+  public listUser:users[] = [{
+    name: "Primero",
+    picture:"jajajaj"
+  }];
   public search:string = "";
   ejecutar:number = 0;
 
+
   ngOnInit(): void 
   {
-    if(this.ejecutar==0)this.updatePosts();
+    this.listUser.push({
+      name: "Segundo",
+      picture:"jajajaja2"
+    });
+    console.log(this.listUser);
+    // LINEA PARA CARGAR LA LISTA USUARIOS
+    //if(this.ejecutar==0)this.updatePosts();
   }
 
   updatePosts()
@@ -32,6 +42,17 @@ export class AccountComponent implements OnInit {
       //console.log(res);
       this.listPost = res['data'];
       console.log(this.listPost);
+    })
+  }
+
+  updateListUser()
+  {
+    let u:userInteface = this.serviceU.getCurrentStorage();
+    this.serviceP.getPosts(u.username).subscribe((res)=>
+    {
+      //console.log(res);
+      this.listUser = res['data'];
+      console.log(this.listUser);
     })
   }
 
