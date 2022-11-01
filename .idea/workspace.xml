@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4f5afc86-ce3d-499f-b864-7d3d734d6620" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Client/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/Client/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/.browserslistrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/Server/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Server/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/angular.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/karma.conf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Server/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/app/app-routing.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/app/app.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/app/app.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/app/app.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/app/app.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/app/app.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/assets/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/0ecef659-f012-4185-954d-104abb543f20.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/152911-anime-city-wallpaper-1920x1080-for-android-tablet.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/152914-anime-city-wallpaper-1920x1080-image.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/152921-anime-city-wallpaper-1920x1080-images.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/244780-download-free-anime-city-wallpaper-1920x1200.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/244786-most-popular-anime-city-wallpaper-1920x1080-lockscreen.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/244790-widescreen-anime-city-wallpaper-1920x1080.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/244795-cool-anime-city-wallpaper-1920x1200.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/244798-anime-city-wallpaper-2000x1500-for-htc.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/244799-anime-city-wallpaper-1920x1200-full-hd.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/244810-beautiful-anime-city-wallpaper-2560x1702-htc.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/265620-anime-city-wallpaper-2500x1500-for-4k.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/51e65eb2207eab6e6443517d7c8abd07.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/8uxBwW.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/918b7a78-bb12-45c9-8bc7-cc5805fd4c5d.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/Castle_003.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/cod1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/cod3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/cod4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/cod5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/fondo2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/fondo3.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/fondo4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/fondo5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/fondo6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/pSngiUS.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/assets/public/wallpaper-2915737.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/config/settingdb.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/controllers/posts-controller.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/controllers/user-controller.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/environments/environment.prod.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/environments/environment.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/polyfills.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/routes/person-rotes.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/routes/posts-route.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/routes/user-route.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/run/runInit.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/test.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/tsconfig.app.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/tsconfig.spec.json" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2GnBm5TQOLg3sX3fNPBmzdGKspS" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2021.3.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4f5afc86-ce3d-499f-b864-7d3d734d6620" name="Changes" comment="" />
+      <created>1667014624638</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1667014624638</updated>
+      <workItem from="1667014645699" duration="4598000" />
+      <workItem from="1667095691564" duration="7972000" />
+      <workItem from="1667185482552" duration="5171000" />
+      <workItem from="1667265762171" duration="3334000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
