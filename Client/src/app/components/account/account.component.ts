@@ -5,6 +5,7 @@ import { userInteface } from 'src/app/models/user-interface';
 import { users } from 'src/app/models/user-interface';
 import { PostsService } from 'src/app/services/posts.service';
 import { UserService } from 'src/app/services/user.service';
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-account',
@@ -20,8 +21,7 @@ export class AccountComponent implements OnInit {
   public search:string = "";
   ejecutar:number = 0;
 
-
-  ngOnInit(): void 
+  ngOnInit(): void
   {
     console.log(this.listUser);
     // LINEA PARA CARGAR LA LISTA USUARIOS
@@ -30,13 +30,15 @@ export class AccountComponent implements OnInit {
 
   updatePosts()
   {
-    let u:userInteface = this.serviceU.getCurrentStorage();
-    this.serviceP.getPosts(u.username).subscribe((res)=>
+    this.serviceP.getPosts(this.serviceU.getId()).subscribe((res)=>
     {
       //console.log(res);
-      this.listPost = res['data'];
-      console.log(this.listPost);
+      this.listPost = res.data;
+      console.log(res.data);
     })
+  }
+  getImage(): String {
+    return this.serviceU.getURL();
   }
 
   updateListUser()
@@ -81,14 +83,14 @@ export class AccountComponent implements OnInit {
       this.serviceU.show_message('info', "Debe ingresar un tag para buscar")
       this.ngOnInit();
     }
-    //console.log("Esto esta en seach", this.search);      
+    //console.log("Esto esta en seach", this.search);
   }
 
   goPageUpdateInfo()
   {
     this.router.navigate(['updateinfo']);
   }
-  
+
   goPagePost()
   {
     this.router.navigate(['publicacion']);

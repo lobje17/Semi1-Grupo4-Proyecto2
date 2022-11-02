@@ -10,7 +10,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./new-account.component.css']
 })
 export class NewAccountComponent implements OnInit {
-
+  archivocargado:File | undefined;
+  photo2 : string | ArrayBuffer | any;
   constructor(private router:Router, private service:UserService, private sanitizer:DomSanitizer) { }
 
   ngOnInit(): void {
@@ -29,12 +30,11 @@ export class NewAccountComponent implements OnInit {
   {
     if(!this.fields_filled()) return;
     if(this.password == this.confirm_password)
-    {      
-      this.service.CreateUser(this.name, this.username, this.password, this.picture).subscribe((res)=>
+    {
+      this.service.CreateUser(this.name, this.email, this.password, this.photo2).subscribe((res)=>
       {
-        if(res['ok'])
+        if(res.status == '200')
         {
-          if(this.picture.includes(".")) this.uploadFile();
           this.service.show_message('success', res['data'])
           this.router.navigate(['login'])
         }
@@ -54,10 +54,10 @@ export class NewAccountComponent implements OnInit {
       if(cadena!="") cadena += ", ";
       cadena +="name";
     }
-    if(this.username=="" || this.username==" ")
+    if(this.email=="" || this.email==" ")
     {
       if(cadena!="") cadena += ", ";
-      cadena +="username";
+      cadena +="email";
     }
     if(this.email=="" || this.email==" ")
     {
@@ -75,7 +75,7 @@ export class NewAccountComponent implements OnInit {
       cadena +="confirm password";
     }
 
-    if(cadena!="") 
+    if(cadena!="")
     {
       this.service.show_message('warning',"Los datos "+cadena+" son obligatorio");
       return false;
@@ -85,38 +85,35 @@ export class NewAccountComponent implements OnInit {
 
   async getPicture(event:any)
   {
-    /*
-    const { value: file } = await Swal.fire({
-      title: 'Select image',
-      input: 'file',
-      inputAttributes: {
-        'accept': 'image/*',
-        'aria-label': 'Upload your profile picture'
-      }
-    })
 
-    let pic:any;
-    if (file) {
-      const reader = new FileReader()
-        console.log("pic")
-        console.log(file)
-        
-        reader.readAsDataURL(file)
-        this.picture = file['name'];
-        Swal.fire({
-          title: 'Your uploaded picture',
-          imageUrl: this.picture,
-          imageAlt: 'The uploaded picture'
-        })
-      }*/
-    
-    const getPath = event.target.files[0];
-    this.picture = getPath['name'];    
-    
-    this.extraerBase64(getPath).then((imagen:any) =>{
-      this.previsualizacion = imagen.Base;
-    })
-    this.archivos.push(getPath);
+    this.archivocargado = event.target.files[0];
+    let reader = new FileReader();
+    // @ts-ignore
+    reader.readAsDataURL(this.archivocargado);
+    // @ts-ignore
+    let nameImage = this.archivocargado.name.toString();
+    let filetype = this.archivocargado?.type.toString();
+    let filebase64:any = "";
+
+    reader.onload = ( event2:any ) => {
+      filebase64 = reader.result?.toString();
+      filebase64 = filebase64.replace(/data:.+?,/, "");
+      this.photo2 = filebase64;
+      let dataImage = {
+        "PUBLICO" : 1,
+        "IdUsuario" : 1,
+        NOMBRE : nameImage,
+        CONTENIDO : filetype,
+        BASE64 : filebase64
+      };
+      /*this.service.UploadFile(dataImage).subscribe((result: { downloadURL: any; }) => {
+        this.photo2 = result.downloadURL;
+        console.log(result.downloadURL);
+      }, (err: any) => {
+        console.log(err);
+      });*/
+    }
+
   }
 
   extraerBase64 = async($event:any)=>new Promise((resolve, reject) =>
@@ -144,9 +141,9 @@ export class NewAccountComponent implements OnInit {
           Base: null
         });
       }
-      
+
     } catch (error) {
-      console.log(error);      
+      console.log(error);
     }
   })
 
@@ -154,11 +151,11 @@ export class NewAccountComponent implements OnInit {
   {
     try {
       const formPicture = new FormData();
-      this.archivos.forEach((archivo:any) => 
+      this.archivos.forEach((archivo:any) =>
       {
         formPicture.append('myfile', archivo);
       });
-      
+
       this.service.upload(formPicture).subscribe((res)=>{
         console.log(res);
       })
