@@ -13,7 +13,7 @@ import { delay } from 'rxjs/operators';
 })
 export class PublicacionComponent implements OnInit {
 
- constructor(private router:Router, private serviceU:UserService, private serviceP:PostsService, private sanitizer:DomSanitizer) { }
+constructor(private router:Router, private serviceU:UserService, private serviceP:PostsService, private sanitizer:DomSanitizer) { }
 
   ngOnInit(): void {
   }
