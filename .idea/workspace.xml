@@ -4,6 +4,10 @@
     <list default="true" id="5f4ecb93-7a6b-4103-8d38-9db69215f193" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/src/app/components/account/account.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/app/components/account/account.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/app/components/account/account.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/app/components/account/account.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/app/components/crud/crud.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/app/components/crud/crud.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/app/components/crud/crud.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/app/components/crud/crud.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/app/services/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/app/services/user.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/routes/crear.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/routes/crear.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,7 +42,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1667355297164</updated>
-      <workItem from="1667355300940" duration="5886000" />
+      <workItem from="1667355300940" duration="7364000" />
     </task>
     <servers />
   </component>

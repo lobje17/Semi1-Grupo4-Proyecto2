@@ -85,36 +85,7 @@ export class AccountComponent implements OnInit {
 
   searchPost()
   {
-    let u:userInteface = this.serviceU.getCurrentStorage();
-    if(this.search!="")
-    {
-      this.serviceP.searchPost(u.username, this.search ).subscribe((res)=>
-      {
-        if(res['ok'])
-        {
-          this.listPost = res['data'];
-          //console.log(res);
-          //console.log(this.listPost);
-          this.ejecutar = 1;
-          this.ngOnInit();
-          this.ejecutar = 0;
-        }
-        else
-        {
-          this.serviceU.show_message('info', res['data']);
-          this.listPost = [];
-          this.ejecutar = 1;
-          this.ngOnInit();
-          this.ejecutar = 0;
-        }
-      })
-    }
-    else
-    {
-      this.serviceU.show_message('info', "Debe ingresar un tag para buscar")
-      this.ngOnInit();
-    }
-    //console.log("Esto esta en seach", this.search);
+    this.router.navigate(['crud']);
   }
 
   goPageUpdateInfo()

@@ -22,7 +22,7 @@ export class UserService {
   // GET
   GetUser()
   {
-    const url = "http://localhost:5000/getUsers";
+    const url = "http://localhost:3005/Usuarios";
     return this.http.get(url);
   }
 

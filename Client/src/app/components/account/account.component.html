@@ -3,10 +3,10 @@
         <img src="https://cdn.svgporn.com/logos/amazon-chime.svg" width="50" height="50" alt="">
         <div>
             <input [(ngModel)]="search" name="search" type="text" class="form-control"
-                style="background-color: black; color: white;" placeholder="Search">
+                style="background-color: black; color: white;" placeholder="Amigos">
         </div>
         <div>
-            <button (click)="searchPost()" class="btn btn-outline-warning me-md-2" type="submit" style="position: relative;">Search</button>
+            <button (click)="searchPost()" class="btn btn-outline-warning me-md-2" type="submit" style="position: relative;">Amigos</button>
             <button (click)="goPagePost()" class="btn btn-outline-success me-md-2" type="submit" style="position: relative;">create post</button>
             <button (click)="goPageUpdateInfo()" class="btn btn-outline-primary me-md-2" type="submit" style="position: relative;">Update information</button>
             <button (click)="singOut()" class="btn btn-outline-danger me-md-2" type="submit" style="position: relative;">Sing out</button>
@@ -94,9 +94,24 @@
       <!-- CONECTADOS -->
         <div class="col-2" style="color: white; align-items: center;">
             <div class="container">
-                <div class="row justify-content-center">aqui 1</div>
-                <div class="row justify-content-center">aqui 2</div>
-                <div class="row justify-content-center">aqui 3</div>
+              <div class="container">
+                <div class="row justify-content-center" >
+                  <div class="card bg-light mb-3">
+                    <div class="card-header" style="color: black;">
+                      <div class="row">
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div>Friends</div>
+                    </div>
+                    <div class="row justify-content-center">
+                      <button  type="submit" class="btn btn-outline-info btn-block">Enviar Mensaje</button>
+                    </div>
+                  </div>
+
+                  <br>
+                </div>
+              </div>
             </div>
         </div>
     </div>

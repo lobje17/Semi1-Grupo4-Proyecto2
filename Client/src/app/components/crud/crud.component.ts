@@ -9,14 +9,13 @@ import { peopleInteface } from "../../models/user-interface";
 })
 
 export class CrudComponent implements OnInit {
-
+  public users : any;
   constructor(public crudService:UserService) { }
 
   ngOnInit(): void {
-    /*this.crudService.GetUser().subscribe((res: any) => {
-      this.Person = res;
-      console.log(this.Person);      
-    })*/
+    this.crudService.GetUser().subscribe((res: any) => {
+      this.users = res.data;
+    })
   }
 
   codUser:  string = "";

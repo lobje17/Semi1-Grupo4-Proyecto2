@@ -218,12 +218,7 @@ router.post('/AgregarAmigo',async(req, res) => {
 //Login
 router.get('/Usuarios',async(req, res) => {
     const connection  = database.Open();
-    var sql = 'SELECT u.Personid, u.nombreUsuario,u.correo, u.fotoperfil , IFNULL(sub.conteo, 0) as conteo\n' +
-    '    FROM (select count(1) as conteo,a.personid\n' +
-    '    from Archivo as a \n' +
-    '    where a.isPublic = \'1\'\n' +
-    '    group by a.Personid ) as sub\n' +
-    '    right join Usuario as u on u.Personid = sub.personid';
+    var sql = 'select * from Usuario';
     connection.query(sql, function (err, result) {
         if (result.length == 0){
             res.json({
