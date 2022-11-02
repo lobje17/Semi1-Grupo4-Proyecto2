@@ -21,22 +21,42 @@
         <!-- MAS OPCIONES -->
         <div class="col-2" style="color: white; align-items: center;">
             <div class="container d-grid gap-2  mx-auto ">
-                <div class="row justify-content-center">
-                    <button type="submit" class="btn btn-outline-info btn-block">Todo</button>
-                </div>
-
-                <div class="row justify-content-center">
-                    <button type="submit" class="btn btn-outline-warning btn-block">Gráficas</button>
-                </div>
-
-                <div class="row justify-content-center">
-                    <button type="submit" class="btn btn-outline-light btn-block">Mapas</button>
+              <div class="row justify-content-center">
+                <button  (click)="filterLabel2()" type="submit" class="btn btn-outline-info btn-block">Todo</button>
+              </div>
+                <div class="row justify-content-center" *ngFor="let item of listLabels">
+                    <button  (click)="filterLabel(item.Item)" type="submit" class="btn btn-outline-info btn-block">{{item.Item}}</button>
                 </div>
             </div>
         </div>
+      <div class="col-8" style="color: white; align-items: center;" *ngIf="visible2">
+        <div class="container">
+          <div class="row justify-content-center" *ngFor="let item of listPost">
+            <div class="card bg-light mb-3" *ngIf="item.Label == flag">
+              <div class="card-header" style="color: black;">
+                <div class="row">
+                  <div class="col-2">
+                    <img [src]="getImage()" class="card-img-top" style="min-width: 50px;  min-height: 50px;" alt="">
+                  </div>
+                  <div class="col">
+                    <div>{{this.serviceU.getName()}}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <img [src]="item.URL" class="card-img-top" alt="">
+              </div>
+              <div class="card-footer" style="color: black;">
+                <div>{{item.Descripcion}}</div>
+              </div>
+            </div>
 
+            <br>
+          </div>
+        </div>
+      </div>
         <!-- PUBLICACIONES -->
-        <div class="col-8" style="color: white; align-items: center;">
+        <div class="col-8" style="color: white; align-items: center;" *ngIf="visible">
             <div class="container">
                 <div class="row justify-content-center" *ngFor="let item of listPost">
                     <div class="card bg-light mb-3">
@@ -56,6 +76,14 @@
                         <div class="card-footer" style="color: black;">
                             <div>{{item.Descripcion}}</div>
                         </div>
+                      <div class="row justify-content-center">
+                        <button  (click)="TraducirIngles_Espaol(item.Descripcion)" type="submit" class="btn btn-outline-info btn-block">TraducirIngles_Español</button>
+                        <button  (click)="TraducirEspaol_Ingles(item.Descripcion)" type="submit" class="btn btn-outline-info btn-block">TraducirEspañol_Ingles</button>
+                        <button  (click)="TraducirEspaol_Aleman(item.Descripcion)" type="submit" class="btn btn-outline-info btn-block">TraducirEspañol_Frances</button>
+                      </div>
+                      <div class="card-footer" style="color: black;" *ngIf="visibleTrad">
+                        <div>{{dataTrad}}</div>
+                      </div>
                     </div>
 
                     <br>
@@ -63,8 +91,7 @@
             </div>
         </div>
         <br>
-
-        <!-- CONECTADOS -->
+      <!-- CONECTADOS -->
         <div class="col-2" style="color: white; align-items: center;">
             <div class="container">
                 <div class="row justify-content-center">aqui 1</div>

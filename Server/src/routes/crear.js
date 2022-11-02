@@ -10,6 +10,7 @@ const crypto = require("crypto");
 const rek = new AWS.Rekognition(keys.S3);
 const cognito = new AmazonCognitoIdentity.CognitoUserPool(keys.cognito);
 const translate = new AWS.Translate(keys.translate);
+var label = "na";
 var verificado = false;
 const router = Router();
 /*
@@ -137,7 +138,7 @@ router.post('/Publicacion',async(req, res) => {
     const connection  = database.Open();
     let {BASE64,CONTENIDO,NOMBRE,DESCRIPCION,IdUsuario} = req.body
     let query = `INSERT INTO Publicacion 
-        (nombrePublicacion, Descripcion,URL,Personid) VALUES (?, ? , ?, ?);`;
+        (nombrePublicacion, Descripcion,URL,Personid,Label) VALUES (?, ? , ?, ?, ?);`;
     //Subir foto
     let decodedImage = Buffer.from(BASE64, 'base64');
     let bucket = 'semichat';
@@ -157,18 +158,36 @@ router.post('/Publicacion',async(req, res) => {
         ContentType: CONTENIDO
       }).promise()
       fotoaws = uploadedImage.Location;
-      // Value to be inserted
-    connection.query(query, [NOMBRE,
-        DESCRIPCION,fotoaws, IdUsuario], (err, rows) => {
-        if (err) throw err;
-        console.log("Row inserted with id = "
-            + rows.insertId);
-        res.json({
-            message: 'Archivo Subido Correctamente',
-            status : '200',
-            idArchivo : rows.insertId
-        })
+
+    /////Lable Rekogniton
+    var params = {
+        Image: {
+            S3Object: {
+                Bucket : 'semichat',
+                Name: filepath
+            },
+        }
+    }
+    rek.detectLabels(params, function(err, data) {
+        if (err) {
+            console.log(err)
+        }
+        else {
+            label = data.Labels[0].Name
+            connection.query(query, [NOMBRE,
+                DESCRIPCION,fotoaws, IdUsuario,label], (err, rows) => {
+                if (err) throw err;
+                console.log("Row inserted with id = "
+                    + rows.insertId);
+                res.json({
+                    message: 'Archivo Subido Correctamente',
+                    status : '200',
+                    idArchivo : rows.insertId
+                })
+            });
+        }
     });
+    /////
 });
 //AgregarAmigo
 /*
@@ -220,6 +239,25 @@ router.get('/Usuarios',async(req, res) => {
         }
 })
 });
+//Labels
+router.post('/Labels',async(req, res) => {
+    const connection  = database.Open();
+    var sql = 'select Label as Item from Publicacion';
+    connection.query(sql, function (err, result) {
+        if (result.length == 0){
+            res.json({
+                message: 'Labels no se encuentra',
+                status : '400'
+            })
+        }else{
+            res.json({
+                message: 'Listado de Labels',
+                data : result,
+                status : '200'
+            })
+        }
+    })
+});
 //Login
 router.post('/getPosts',async(req, res) => {
     const connection  = database.Open();
@@ -258,16 +296,15 @@ router.post('/detectarcara', function (req, res) {
                 Bucket : 'semichat',
                 Name: 'Semi/admin_China.jpg'
             },
-        },
-        Attributes: ['ALL']
+        }
     }
-    rek.detectFaces(params, function(err, data) {
+    rek.detectLabels(params, function(err, data) {
         if (err) {
             console.log(err)
             res.json({mensaje: "Error"})
         }
         else {
-            res.json({Deteccion: data});
+            res.json({Deteccion: data.Labels[0].Name});
         }
     });
 });
@@ -363,7 +400,7 @@ router.post("/api/signup", async (req, res) => {
 Translate
  */
 
-router.post('/translate', (req, res) => {
+router.post('/translate1', (req, res) => {
     let body = req.body
 
     let text = body.text
@@ -371,6 +408,46 @@ router.post('/translate', (req, res) => {
     let params = {
         SourceLanguageCode: 'en',
         TargetLanguageCode: 'es',
+        Text: text || 'Hello there'
+    };
+    translate.translateText(params, function (err, data) {
+        if (err) {
+            console.log(err, err.stack);
+            res.send({ error: err })
+        } else {
+            console.log(data);
+            res.send({ message: data })
+        }
+    });
+});
+router.post('/translate2', (req, res) => {
+    let body = req.body
+
+    let text = body.text
+
+    let params = {
+        SourceLanguageCode: 'es',
+        TargetLanguageCode: 'en',
+        Text: text || 'Hello there'
+    };
+    translate.translateText(params, function (err, data) {
+        if (err) {
+            console.log(err, err.stack);
+            res.send({ error: err })
+        } else {
+            console.log(data);
+            res.send({ message: data })
+        }
+    });
+});
+router.post('/translate3', (req, res) => {
+    let body = req.body
+
+    let text = body.text
+
+    let params = {
+        SourceLanguageCode: 'es',
+        TargetLanguageCode: 'fr',
         Text: text || 'Hello there'
     };
     translate.translateText(params, function (err, data) {

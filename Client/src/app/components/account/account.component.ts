@@ -15,14 +15,61 @@ export class AccountComponent implements OnInit {
 
   constructor(private router:Router, public serviceU:UserService, public serviceP:PostsService) { }
   public listPost: any;
+  public listLabels: any;
   public search:string = "";
   ejecutar:number = 0;
+  public flagLabel = "todoss";
+  public flag = "todo";
+  public visible = false;
+  public visible2 = false;
+  public visibleTrad = false;
+  public dataTrad : any;
 
   ngOnInit(): void
   {
     if(this.ejecutar==0)this.updatePosts();
+    this.serviceP.getLables().subscribe((res)=>
+    {
+      //console.log(res);
+      this.listLabels = res.data;
+      console.log(this.listLabels);
+    })
   }
+  filterLabel(name:any){
+      this.flag = name;
+      this.flagLabel = name;
+      this.visible = false;
+      this.visible2 = true;
+  }
+  filterLabel2(){
+    this.visible = true;
+    this.visible2 = false;
+  }
+  TraducirIngles_Espaol(data:any){
+    this.serviceP.traducir1(data).subscribe((res)=>
+    {
+      console.log(res);
+      this.dataTrad =  res.message.TranslatedText;
 
+      this.visibleTrad = true;
+    })
+  }
+  TraducirEspaol_Ingles(data:any){
+    this.serviceP.traducir2(data).subscribe((res)=>
+    {
+      console.log(res);
+      this.dataTrad = res.message.TranslatedText;
+      this.visibleTrad = true;
+    })
+  }
+  TraducirEspaol_Aleman(data:any){
+    this.serviceP.traducir3(data).subscribe((res)=>
+    {
+      console.log(res);
+      this.dataTrad = res.message.TranslatedText;
+      this.visibleTrad = true;
+    })
+  }
   updatePosts()
   {
     this.serviceP.getPosts(this.serviceU.getId()).subscribe((res)=>

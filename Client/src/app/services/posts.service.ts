@@ -28,6 +28,56 @@ export class PostsService {
       }
     ).pipe(map(data=>data));
   }
+  getLables()
+  {
+    const url = "http://localhost:3005/Labels";
+    return this.http.post<any>(
+      url, {
+        "username":"username"
+      },
+      {
+        headers: this.headers
+      }
+    ).pipe(map(data=>data));
+  }
+  traducir1(data:any)
+  {
+    const url = "http://localhost:3005/translate1";
+    return this.http.post<any>(
+      url, {
+        "text":data
+      },
+      {
+        headers: this.headers
+      }
+    ).pipe(map(data=>data));
+  }
+
+  traducir2(data:any)
+  {
+    const url = "http://localhost:3005/translate2";
+    return this.http.post<any>(
+      url, {
+        "text":data
+      },
+      {
+        headers: this.headers
+      }
+    ).pipe(map(data=>data));
+  }
+
+  traducir3(data:any)
+  {
+    const url = "http://localhost:3005/translate3";
+    return this.http.post<any>(
+      url, {
+        "text":data
+      },
+      {
+        headers: this.headers
+      }
+    ).pipe(map(data=>data));
+  }
 
   createPost(BASE64:string, CONTENIDO:string, NOMBRE:string, DESCRIPCION:string,IdUsuario: number)
   {
