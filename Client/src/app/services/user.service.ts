@@ -64,7 +64,31 @@ export class UserService {
       }
     ).pipe(map(data=>data));
   }
-
+  AgregarAmigo(idEmisor:number,idRecpetor:number)
+  {
+    const url = "http://localhost:3005/AgregarAmigo";
+    return this.http.post<any>(
+      url, {
+        "IdAmigoEmisor":idEmisor,
+        "IdAmigoReceptor":idRecpetor
+      },
+      {
+        headers: this.headers
+      }
+    ).pipe(map(data=>data));
+  }
+  MisAmgios(idUsuario:number)
+  {
+    const url = "http://localhost:3005/MisAmigos";
+    return this.http.post<any>(
+      url, {
+        "idUsuario":idUsuario,
+      },
+      {
+        headers: this.headers
+      }
+    ).pipe(map(data=>data));
+  }
   UpdateInf(name:string, username:string, bot_mode:number, picture:string, password:string)
   {
     const url = "http://localhost:5000/updateInfo";

@@ -8,7 +8,7 @@
         <div>
             <button (click)="searchPost()" class="btn btn-outline-warning me-md-2" type="submit" style="position: relative;">Amigos</button>
             <button (click)="goPagePost()" class="btn btn-outline-success me-md-2" type="submit" style="position: relative;">create post</button>
-            <button (click)="goPageUpdateInfo()" class="btn btn-outline-primary me-md-2" type="submit" style="position: relative;">Update information</button>
+            <button (click)="goPageUpdateInfo()" class="btn btn-outline-primary me-md-2" type="submit" style="position: relative;">Bienbenido {{this.serviceU.getName()}}</button>
             <button (click)="singOut()" class="btn btn-outline-danger me-md-2" type="submit" style="position: relative;">Sing out</button>
 
         </div>
@@ -95,14 +95,15 @@
         <div class="col-2" style="color: white; align-items: center;">
             <div class="container">
               <div class="container">
-                <div class="row justify-content-center" >
+                <div class="col">
+                  <H2 style="color: wheat; align-items: center;">Amigos</H2>
+                </div>
+                <div class="row justify-content-center" *ngFor="let item of listMisAmigos">
                   <div class="card bg-light mb-3">
                     <div class="card-header" style="color: black;">
-                      <div class="row">
-                      </div>
                     </div>
-                    <div class="card-body">
-                      <div>Friends</div>
+                    <div class="col">
+                      <H2 style="color: black; align-items: center;">{{item.nombreUsuario}}</H2>
                     </div>
                     <div class="row justify-content-center">
                       <button  type="submit" class="btn btn-outline-info btn-block">Enviar Mensaje</button>

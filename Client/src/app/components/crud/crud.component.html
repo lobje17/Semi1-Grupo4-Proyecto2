@@ -4,7 +4,9 @@
         <a class="navbar-brand">
             <img src="https://cdn.svgporn.com/logos/amazon-chime.svg" width="30" height="30" alt="">
         </a>
-
+      <div>
+        <button (click)="account()" class="btn btn-outline-warning me-md-2" type="submit" style="position: relative;">Publicaciones</button>
+      </div>
     </div>
 </nav>
 <div class="container">
@@ -28,7 +30,7 @@
       />
       {{ item.correo }}
     </td>
-    <td><button  type="submit" class="btn btn-outline-info btn-block">Agregar Amigo</button></td>
+    <td><button (click)="agregarAmigo(item.Personid)" type="submit" class="btn btn-outline-info btn-block">Agregar Amigo</button></td>
   </tr>
   </tbody>
 </table>

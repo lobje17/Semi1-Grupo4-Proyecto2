@@ -15,6 +15,7 @@ export class AccountComponent implements OnInit {
 
   constructor(private router:Router, public serviceU:UserService, public serviceP:PostsService) { }
   public listPost: any;
+  public listMisAmigos: any;
   public listLabels: any;
   public search:string = "";
   ejecutar:number = 0;
@@ -32,7 +33,11 @@ export class AccountComponent implements OnInit {
     {
       //console.log(res);
       this.listLabels = res.data;
-      console.log(this.listLabels);
+    })
+    this.serviceU.MisAmgios(this.serviceU.getId()).subscribe((res)=>
+    {
+      //console.log(res);
+      this.listMisAmigos = res.data;
     })
   }
   filterLabel(name:any){

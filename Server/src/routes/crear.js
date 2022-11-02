@@ -234,6 +234,36 @@ router.get('/Usuarios',async(req, res) => {
         }
 })
 });
+
+//Mis Amgios
+router.post('/MisAmigos',async(req, res) => {
+    let idUsuario = req.body.idUsuario;
+    const connection  = database.Open();
+    var sql = 'select u2.nombreUsuario ,u2.correo  \n' +
+        'from Amigos a  \n' +
+        'inner join Usuario u2 on u2.Personid  = a.idAmigoEmisor  \n' +
+        'where a.idAmigoReceptor  = ? \n' +
+        'UNION\n' +
+        'select u2.nombreUsuario ,u2.correo  \n' +
+        'from Amigos a  \n' +
+        'right join Usuario u2 on u2.Personid  = a.idAmigoReceptor  \n' +
+        'where a.idAmigoEmisor  = ? \n' +
+        '\n';
+    connection.query(sql,[idUsuario,idUsuario], function (err, result) {
+        if (result.length == 0){
+            res.json({
+                message: 'Usuario no se encuentra',
+                status : '400'
+            })
+        }else{
+            res.json({
+                message: 'Listado de Usuarios',
+                data : result,
+                status : '200'
+            })
+        }
+    })
+});
 //Labels
 router.post('/Labels',async(req, res) => {
     const connection  = database.Open();
