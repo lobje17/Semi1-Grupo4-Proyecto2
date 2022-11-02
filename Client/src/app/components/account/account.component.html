@@ -6,9 +6,9 @@
                 style="background-color: black; color: white;" placeholder="Search">
         </div>
         <div>
-            <button (click)="searchPost()" class="btn btn-outline-warning me-md-2" type="submit" style="position: relative;">Search</button>
-            <button (click)="goPagePost()" class="btn btn-outline-success me-md-2" type="submit" style="position: relative;">create post</button>
-            <button (click)="goPageUpdateInfo()" class="btn btn-outline-primary me-md-2" type="submit" style="position: relative;">Update information</button>
+            <button (click)="searchPost()" class="btn btn-outline-success me-md-2" type="submit" style="position: relative;">Search</button>
+            <!-- button (click)="goPagePost()" class="btn btn-outline-success me-md-2" type="submit" style="position: relative;">create post</button -->
+            <!-- button (click)="goPageUpdateInfo()" class="btn btn-outline-primary me-md-2" type="submit" style="position: relative;">Update information</button -->
             <button (click)="singOut()" class="btn btn-outline-danger me-md-2" type="submit" style="position: relative;">Sing out</button>
 
         </div>
@@ -22,15 +22,15 @@
         <div class="col-2" style="color: white; align-items: center;">
             <div class="container d-grid gap-2  mx-auto ">
                 <div class="row justify-content-center">
+                    <button (click)="goPagePost()" type="submit" class="btn btn-outline-warning btn-block">create post</button>
+                </div>
+
+                <div class="row justify-content-center">
+                    <button (click)="goPageUpdateInfo()" type="submit" class="btn btn-outline-light btn-block">Update information</button>
+                </div>
+
+                <div class="row justify-content-center">
                     <button (click)="goPageChat()" type="submit" class="btn btn-outline-info btn-block">Chat</button>
-                </div>
-
-                <div class="row justify-content-center">
-                    <button type="submit" class="btn btn-outline-warning btn-block">Gráficas</button>
-                </div>
-
-                <div class="row justify-content-center">
-                    <button type="submit" class="btn btn-outline-light btn-block">Mapas</button>
                 </div>
             </div>
         </div>
@@ -56,6 +56,9 @@
                         </div>
                         <div class="card-footer" style="color: black;">
                             <div>{{item.coment}}</div>                            
+                        </div>
+                        <div class="row justify-content-center">
+                            <button type="submit" class="btn-outline-warning btn">Traducir</button>
                         </div>
                     </div>
                     

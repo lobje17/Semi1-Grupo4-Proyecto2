@@ -14,11 +14,19 @@ import { UserService } from 'src/app/services/user.service';
 export class AccountComponent implements OnInit {
 
   constructor(private router:Router, private serviceU:UserService, private serviceP:PostsService) { }
-  public listPost:postInterface[] = [];
+  public listPost:postInterface[] = [
+    {
+        username:"uno",
+        pictureU:"dos",
+        pictureP:"tres",
+        coment: "cuatro",
+        tag:"cinco"
+    }];
   public listUser:users[] = [{
     name: "Primero",
     picture:"jajajaj"
   }];
+
   public search:string = "";
   ejecutar:number = 0;
 
