@@ -24,7 +24,7 @@ export class ChatComponent implements OnInit {
   ejecutar:number = 0;
 
 
-  ngOnInit(): void 
+  ngOnInit(): void
   {
     this.listUser.push({
       name: "Segundo",
@@ -81,7 +81,7 @@ export class ChatComponent implements OnInit {
   updateListUser()
   {
     let u:userInteface = this.serviceU.getCurrentStorage();
-    this.serviceP.getPosts(u.username).subscribe((res)=>
+    this.serviceP.getPosts(this.serviceU.getId()).subscribe((res)=>
     {
       //console.log(res);
       this.listUser = res['data'];
@@ -120,19 +120,19 @@ export class ChatComponent implements OnInit {
       this.serviceU.show_message('info', "Debe ingresar un tag para buscar")
       this.ngOnInit();
     }
-    //console.log("Esto esta en seach", this.search);      
+    //console.log("Esto esta en seach", this.search);
   }
 
   goPageUpdateInfo()
   {
     this.router.navigate(['updateinfo']);
   }
-  
+
   goPagePost()
   {
     this.router.navigate(['publicacion']);
   }
-  
+
   goPageAccount()
   {
     this.router.navigate(['account']);

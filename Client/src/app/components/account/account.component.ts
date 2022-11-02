@@ -14,8 +14,8 @@ import {Observable} from "rxjs";
 })
 export class AccountComponent implements OnInit {
 
-  constructor(private router:Router, private serviceU:UserService, private serviceP:PostsService) { }
-  public listPost:postInterface[] = [];
+  constructor(private router:Router, public serviceU:UserService, public serviceP:PostsService) { }
+  public listPost:any;
   public listUser:users[] = [];
 
   public search:string = "";
