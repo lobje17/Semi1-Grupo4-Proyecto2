@@ -261,7 +261,9 @@ router.post('/Labels',async(req, res) => {
 //Login
 router.post('/getPosts',async(req, res) => {
     const connection  = database.Open();
-    var sql = 'select * from Publicacion';
+    var sql = 'select pu.idPublicacion,pu.nombrePublicacion,pu.Descripcion,pu.URL,pu.Personid,pu.Label,u.nombreUsuario , u.fotoperfil \n' +
+        'from Publicacion pu\n' +
+        'inner join Usuario u on u.Personid  = pu.Personid';
     connection.query(sql, function (err, result) {
         if (result.length == 0){
             res.json({

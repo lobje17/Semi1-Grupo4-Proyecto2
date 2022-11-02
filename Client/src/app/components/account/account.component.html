@@ -36,10 +36,10 @@
               <div class="card-header" style="color: black;">
                 <div class="row">
                   <div class="col-2">
-                    <img [src]="getImage()" class="card-img-top" style="min-width: 50px;  min-height: 50px;" alt="">
+                    <img [src]="item.fotoperfil" class="card-img-top" style="min-width: 50px;  min-height: 50px;" alt="">
                   </div>
                   <div class="col">
-                    <div>{{this.serviceU.getName()}}</div>
+                    <div>{{item.nombreUsuario}}</div>
                   </div>
                 </div>
               </div>
@@ -62,12 +62,12 @@
                     <div class="card bg-light mb-3">
                         <div class="card-header" style="color: black;">
                             <div class="row">
-                                <div class="col-2">
-                                    <img [src]="getImage()" class="card-img-top" style="min-width: 50px;  min-height: 50px;" alt="">
-                                </div>
-                                <div class="col">
-                                    <div>{{this.serviceU.getName()}}</div>
-                                </div>
+                              <div class="col-2">
+                                <img [src]="item.fotoperfil" class="card-img-top" style="min-width: 50px;  min-height: 50px;" alt="">
+                              </div>
+                              <div class="col">
+                                <div>{{item.nombreUsuario}}</div>
+                              </div>
                             </div>
                             </div>
                         <div class="card-body">
