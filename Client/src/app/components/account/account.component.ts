@@ -14,18 +14,8 @@ import { UserService } from 'src/app/services/user.service';
 export class AccountComponent implements OnInit {
 
   constructor(private router:Router, private serviceU:UserService, private serviceP:PostsService) { }
-  public listPost:postInterface[] = [
-    {
-        username:"uno",
-        pictureU:"dos",
-        pictureP:"tres",
-        coment: "cuatro",
-        tag:"cinco"
-    }];
-  public listUser:users[] = [{
-    name: "Primero",
-    picture:"jajajaj"
-  }];
+  public listPost:postInterface[] = [];
+  public listUser:users[] = [];
 
   public search:string = "";
   ejecutar:number = 0;
@@ -33,10 +23,6 @@ export class AccountComponent implements OnInit {
 
   ngOnInit(): void 
   {
-    this.listUser.push({
-      name: "Segundo",
-      picture:"jajajaja2"
-    });
     console.log(this.listUser);
     // LINEA PARA CARGAR LA LISTA USUARIOS
     //if(this.ejecutar==0)this.updatePosts();
