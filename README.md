@@ -37,7 +37,7 @@
 
 
 >- -  ApiGateway: nos dara el endpoint necesario para consumir nuestra funcion lambda
-
+>- - https://qx1lef8g9b.execute-api.us-east-2.amazonaws.com/any
 <p align=center>
      <img src="Images/ApiGateway.png" alt="" width=80%>
 </p>
