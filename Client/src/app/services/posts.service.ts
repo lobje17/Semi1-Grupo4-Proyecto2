@@ -18,7 +18,7 @@ export class PostsService {
 
   getPosts(username:number)
   {
-    const url = "http://localhost:3005/getPosts";
+    const url = "http://3.138.107.64:3005/getPosts";
     return this.http.post<any>(
       url, {
         "username":username
@@ -30,7 +30,7 @@ export class PostsService {
   }
   getLables()
   {
-    const url = "http://localhost:3005/Labels";
+    const url = "http://3.138.107.64:3005/Labels";
     return this.http.post<any>(
       url, {
         "username":"username"
@@ -42,7 +42,7 @@ export class PostsService {
   }
   traducir1(data:any)
   {
-    const url = "http://localhost:3005/translate1";
+    const url = "http://3.138.107.64:3005/translate1";
     return this.http.post<any>(
       url, {
         "text":data
@@ -55,7 +55,7 @@ export class PostsService {
 
   traducir2(data:any)
   {
-    const url = "http://localhost:3005/translate2";
+    const url = "http://3.138.107.64:3005/translate2";
     return this.http.post<any>(
       url, {
         "text":data
@@ -68,7 +68,7 @@ export class PostsService {
 
   traducir3(data:any)
   {
-    const url = "http://localhost:3005/translate3";
+    const url = "http://3.138.107.64:3005/translate3";
     return this.http.post<any>(
       url, {
         "text":data
@@ -82,7 +82,7 @@ export class PostsService {
   createPost(BASE64:string, CONTENIDO:string, NOMBRE:string, DESCRIPCION:string,IdUsuario: number)
   {
 
-    const url = "http://localhost:3005/Publicacion";
+    const url = "http://3.138.107.64:3005/Publicacion";
     return this.http.post<any>(
       url, {
         "BASE64":BASE64,
@@ -99,7 +99,7 @@ export class PostsService {
 
   searchPost(username:string, tag:string)
   {
-    const url = "http://localhost:5000/searchPost";
+    const url = "http://3.138.107.64:5000/searchPost";
     return this.http.post<any>(
       url, {
         "username":username,

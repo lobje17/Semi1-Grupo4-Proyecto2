@@ -22,13 +22,13 @@ export class UserService {
   // GET
   GetUser()
   {
-    const url = "http://localhost:3005/Usuarios";
+    const url = "http://3.138.107.64:3005/Usuarios";
     return this.http.get(url);
   }
 
   LogIn(username:string, password:string)
   {
-    const url = "http://localhost:3005/login";
+    const url = "http://3.138.107.64:3005/login";
     return this.http.post<any>(
       url, {
         "username":username,
@@ -40,7 +40,7 @@ export class UserService {
     ).pipe(map(data=>data));
   }
   public UploadFile(data : any){
-    const url = "http://localhost:3005/SubirArchivo";
+    const url = "http://3.138.107.64:3005/SubirArchivo";
     return this.http.post<any>(
       url, data,
       {
@@ -51,7 +51,7 @@ export class UserService {
 
   CreateUser(nombreUsuario:string, correo:string, contrasenia:string, fotoURL:string)
   {
-    const url = "http://localhost:3005/Registro";
+    const url = "http://3.138.107.64:3005/Registro";
     return this.http.post<any>(
       url, {
         "nombreUsuario":nombreUsuario,
@@ -66,7 +66,7 @@ export class UserService {
   }
   AgregarAmigo(idEmisor:number,idRecpetor:number)
   {
-    const url = "http://localhost:3005/AgregarAmigo";
+    const url = "http://3.138.107.64:3005/AgregarAmigo";
     return this.http.post<any>(
       url, {
         "IdAmigoEmisor":idEmisor,
@@ -79,7 +79,7 @@ export class UserService {
   }
   MisAmgios(idUsuario:number)
   {
-    const url = "http://localhost:3005/MisAmigos";
+    const url = "http://3.138.107.64:3005/MisAmigos";
     return this.http.post<any>(
       url, {
         "idUsuario":idUsuario,
@@ -91,7 +91,7 @@ export class UserService {
   }
   UpdateInf(name:string, username:string, bot_mode:number, picture:string, password:string)
   {
-    const url = "http://localhost:5000/updateInfo";
+    const url = "http://3.138.107.64:5000/updateInfo";
     return this.http.post<any>(
       url, {
         "name":name,
@@ -108,7 +108,7 @@ export class UserService {
 
   upload(formPicture:FormData)
   {
-    const url = "http://localhost:5000/upload";
+    const url = "http://3.138.107.64:5000/upload";
     return this.http.post<any>(
       url,
       formPicture

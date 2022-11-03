@@ -17,6 +17,7 @@ export class CrudComponent implements OnInit {
   ngOnInit(): void {
     this.crudService.GetUser().subscribe((res: any) => {
       this.users = res.data;
+      console.log(res.data);
     })
   }
 

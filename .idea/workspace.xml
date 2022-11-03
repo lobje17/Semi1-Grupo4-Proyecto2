@@ -3,11 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="5f4ecb93-7a6b-4103-8d38-9db69215f193" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/app/components/account/account.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/app/components/account/account.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/app/components/account/account.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/app/components/account/account.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/app/components/crud/crud.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/app/components/crud/crud.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/src/app/components/crud/crud.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/app/components/crud/crud.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/app/services/posts.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/app/services/posts.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/src/app/services/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/app/services/user.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/AWS/s3keys.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/AWS/s3keys.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/routes/crear.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/routes/crear.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,6 +29,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../SistemasOperativos2/SO2_F1_G4/Fase 4/FrontFase4" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="ts.external.directory.path" value="C:\Users\edson\Desktop\Proyectos\Semi1\Semi1-Grupo4-Proyecto2\Client\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -42,7 +42,10 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1667355297164</updated>
-      <workItem from="1667355300940" duration="10734000" />
+      <workItem from="1667355300940" duration="10871000" />
+      <workItem from="1667402925680" duration="1776000" />
+      <workItem from="1667440546351" duration="1103000" />
+      <workItem from="1667446749228" duration="16893000" />
     </task>
     <servers />
   </component>

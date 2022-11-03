@@ -9,6 +9,7 @@ const crypto = require("crypto");
 
 const rek = new AWS.Rekognition(keys.S3);
 const cognito = new AmazonCognitoIdentity.CognitoUserPool(keys.cognito);
+var cognitoUser = cognito.getCurrentUser();
 const translate = new AWS.Translate(keys.translate);
 var label = "na";
 var verificado = false;
@@ -487,4 +488,24 @@ router.post('/translate3', (req, res) => {
         }
     });
 });
+//Texto
+router.post('/detectartexto', function (req, res) {
+    var imagen = req.body.imagen;
+    var params = {
+        /* S3Object: {
+          Bucket: "mybucket",
+          Name: "mysourceimage"
+        }*/
+        Image: {
+            Bytes: Buffer.from(imagen, 'base64')
+        }
+    };
+    rek.detectText(params, function(err, data) {
+        if (err) {res.json({mensaje: "Error"})}
+        else {
+            res.json({texto: data.TextDetections});
+        }
+    });
+});
+
 module.exports = router;
