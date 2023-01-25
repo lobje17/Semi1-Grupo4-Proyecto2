@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { userInteface } from "../models/user-interface";
-import { map } from "rxjs/operators";
+import { map, tap } from "rxjs/operators";
 import { Router } from "@angular/router";
 import Swal from 'sweetalert2';
 
@@ -12,6 +12,7 @@ export class UserService {
 
   images:any;
   multipleImages = [];
+  private httpClient: any;
   constructor(private router:Router, private http: HttpClient) { }
 
   headers: HttpHeaders = new HttpHeaders({
@@ -21,13 +22,13 @@ export class UserService {
   // GET
   GetUser()
   {
-    const url = "http://localhost:5000/getUsers";
+    const url = "http://3.138.107.64:3005/Usuarios";
     return this.http.get(url);
   }
 
   LogIn(username:string, password:string)
   {
-    const url = "http://localhost:5000/login";
+    const url = "http://3.138.107.64:3005/login";
     return this.http.post<any>(
       url, {
         "username":username,
@@ -38,26 +39,59 @@ export class UserService {
       }
     ).pipe(map(data=>data));
   }
-
-  CreateUser(name:string, username:string, password:string, picture:string)
-  {
-    const url = "http://localhost:5000/createAccount";
+  public UploadFile(data : any){
+    const url = "http://3.138.107.64:3005/SubirArchivo";
     return this.http.post<any>(
-      url, {
-        "name":name,
-        "username":username,
-        "password":password,
-        "picture":picture
-      },
+      url, data,
       {
         headers: this.headers
       }
     ).pipe(map(data=>data));
   }
 
+  CreateUser(nombreUsuario:string, correo:string, contrasenia:string, fotoURL:string)
+  {
+    const url = "http://3.138.107.64:3005/Registro";
+    return this.http.post<any>(
+      url, {
+        "nombreUsuario":nombreUsuario,
+        "correo":correo,
+        "contrasenia":contrasenia,
+        "fotoURL":fotoURL
+      },
+      {
+        headers: this.headers
+      }
+    ).pipe(map(data=>data));
+  }
+  AgregarAmigo(idEmisor:number,idRecpetor:number)
+  {
+    const url = "http://3.138.107.64:3005/AgregarAmigo";
+    return this.http.post<any>(
+      url, {
+        "IdAmigoEmisor":idEmisor,
+        "IdAmigoReceptor":idRecpetor
+      },
+      {
+        headers: this.headers
+      }
+    ).pipe(map(data=>data));
+  }
+  MisAmgios(idUsuario:number)
+  {
+    const url = "http://3.138.107.64:3005/MisAmigos";
+    return this.http.post<any>(
+      url, {
+        "idUsuario":idUsuario,
+      },
+      {
+        headers: this.headers
+      }
+    ).pipe(map(data=>data));
+  }
   UpdateInf(name:string, username:string, bot_mode:number, picture:string, password:string)
   {
-    const url = "http://localhost:5000/updateInfo";
+    const url = "http://3.138.107.64:5000/updateInfo";
     return this.http.post<any>(
       url, {
         "name":name,
@@ -74,7 +108,7 @@ export class UserService {
 
   upload(formPicture:FormData)
   {
-    const url = "http://localhost:5000/upload";
+    const url = "http://3.138.107.64:5000/upload";
     return this.http.post<any>(
       url,
       formPicture
@@ -93,6 +127,25 @@ export class UserService {
     if(user_s != null && user_s != undefined) return JSON.parse(user_s);
     return null;
   }
+  getId() : number
+  {
+    let user_s:any = localStorage.getItem('User_logger');
+    let data = JSON.parse(user_s);
+    return data.dataUser[0].Personid;
+  }
+  getName() : String
+  {
+    let user_s:any = localStorage.getItem('User_logger');
+    let data = JSON.parse(user_s);
+    return data.dataUser[0].nombreUsuario;
+  }
+  getURL() : String
+  {
+    let user_s:any = localStorage.getItem('User_logger');
+    let data = JSON.parse(user_s);
+    return data.dataUser[0].fotoperfil;
+  }
+
 
   singOut()
   {
@@ -108,6 +161,6 @@ export class UserService {
             title: 'Usuario',
             text: info,
             footer: ''
-          }) 
+          })
   }
 }

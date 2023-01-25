@@ -13,18 +13,18 @@ import { VigilanteGuard } from './guards/vigilante.guard';
 const routes: Routes = [
   {
     path: 'account',
-    component: AccountComponent
+    component: AccountComponent,
     //canActivate: [VigilanteGuard]
   },
   {
     path: 'chat',
     component: ChatComponent,
-    canActivate: [VigilanteGuard]
+    //canActivate: [VigilanteGuard]
   },
   {
     path: 'crud',
     component: CrudComponent,
-    canActivate: [VigilanteGuard]
+    //canActivate: [VigilanteGuard]
   },
   {
     path: '',
@@ -33,7 +33,7 @@ const routes: Routes = [
   {
     path: 'updateinfo',
     component: InformationComponent,
-    canActivate: [VigilanteGuard]
+    //canActivate: [VigilanteGuard]
   },
   {
     path: 'login',
@@ -46,7 +46,7 @@ const routes: Routes = [
   {
     path: 'publicacion',
     component: PublicacionComponent,
-    canActivate: [VigilanteGuard]
+    //canActivate: [VigilanteGuard]
   }
 ];
 

@@ -11,14 +11,14 @@ import { Router } from "@angular/router";
 export class PostsService {
 
   constructor(private router:Router, private http: HttpClient) { }
-  
+
   headers: HttpHeaders = new HttpHeaders({
     "Content-Type": "application/json"
   })
 
-  getPosts(username:string)
+  getPosts(username:number)
   {
-    const url = "http://localhost:5000/getPosts";
+    const url = "http://3.138.107.64:3005/getPosts";
     return this.http.post<any>(
       url, {
         "username":username
@@ -28,17 +28,68 @@ export class PostsService {
       }
     ).pipe(map(data=>data));
   }
-
-  createPost(picture:string, comment:string, tags:string, username:string)
+  getLables()
   {
-
-    const url = "http://localhost:5000/createPost";
+    const url = "http://3.138.107.64:3005/Labels";
     return this.http.post<any>(
       url, {
-        "picture":picture,
-        "coment":comment,
-        "tags":tags,
-        "username":username
+        "username":"username"
+      },
+      {
+        headers: this.headers
+      }
+    ).pipe(map(data=>data));
+  }
+  traducir1(data:any)
+  {
+    const url = "http://3.138.107.64:3005/translate1";
+    return this.http.post<any>(
+      url, {
+        "text":data
+      },
+      {
+        headers: this.headers
+      }
+    ).pipe(map(data=>data));
+  }
+
+  traducir2(data:any)
+  {
+    const url = "http://3.138.107.64:3005/translate2";
+    return this.http.post<any>(
+      url, {
+        "text":data
+      },
+      {
+        headers: this.headers
+      }
+    ).pipe(map(data=>data));
+  }
+
+  traducir3(data:any)
+  {
+    const url = "http://3.138.107.64:3005/translate3";
+    return this.http.post<any>(
+      url, {
+        "text":data
+      },
+      {
+        headers: this.headers
+      }
+    ).pipe(map(data=>data));
+  }
+
+  createPost(BASE64:string, CONTENIDO:string, NOMBRE:string, DESCRIPCION:string,IdUsuario: number)
+  {
+
+    const url = "http://3.138.107.64:3005/Publicacion";
+    return this.http.post<any>(
+      url, {
+        "BASE64":BASE64,
+        "CONTENIDO":CONTENIDO,
+        "NOMBRE":NOMBRE,
+        "DESCRIPCION":DESCRIPCION,
+        "IdUsuario" : IdUsuario
       },
       {
         headers: this.headers
@@ -48,7 +99,7 @@ export class PostsService {
 
   searchPost(username:string, tag:string)
   {
-    const url = "http://localhost:5000/searchPost";
+    const url = "http://3.138.107.64:5000/searchPost";
     return this.http.post<any>(
       url, {
         "username":username,

@@ -5,10 +5,13 @@ const AWS = require('aws-sdk');
 const s3 = new AWS.S3(keys.S3);
 const functions = require('./password')
 const database = require('../AWS/AWSKeys');
+const crypto = require("crypto");
 
 const rek = new AWS.Rekognition(keys.S3);
 const cognito = new AmazonCognitoIdentity.CognitoUserPool(keys.cognito);
+var cognitoUser = cognito.getCurrentUser();
 const translate = new AWS.Translate(keys.translate);
+var label = "na";
 var verificado = false;
 const router = Router();
 /*
@@ -21,10 +24,53 @@ const router = Router();
 */
 router.post('/Registro',async(req, res) => {    
     let {correo,contrasenia,fotoURL,nombreUsuario} = req.body
-    let password = functions.generatePassword();
+    var crypto = require('crypto');
+    var hash = crypto.createHash('sha256').update(req.body.contrasenia).digest('hex');
     const connection  = database.Open();
     let query = `INSERT INTO Usuario 
         (nombreUsuario, correo,contrasenia,fotoperfil) VALUES (?, ? , ?, ?);`;
+
+    ///======================================SigUp AWS ==========================================
+    var attributelist = [];
+
+    var dataname = {
+        Name: 'custom:name',
+        Value: nombreUsuario,
+    };
+    var attributename = new AmazonCognitoIdentity.CognitoUserAttribute(dataname);
+
+    attributelist.push(attributename);
+
+    var dataemail = {
+        Name: 'email',
+        Value: correo,
+    };
+    var attributeemail = new AmazonCognitoIdentity.CognitoUserAttribute(dataemail);
+
+    attributelist.push(attributeemail);
+
+    var datacarnet = {
+        Name: 'custom:carnet',
+        Value: nombreUsuario+"12",
+    };
+    var attributecarnet = new AmazonCognitoIdentity.CognitoUserAttribute(datacarnet);
+
+    attributelist.push(attributecarnet);
+
+
+    console.log(attributelist);
+
+    cognito.signUp(nombreUsuario, hash+"D**", attributelist, null, async (err, data) => {
+
+        if (err) {
+            console.log(err);
+
+            res.json(err.message || err);
+            return;
+        }
+        console.log(data);
+    });
+    //============================================================================================
     //Subir foto
     let decodedImage = Buffer.from(fotoURL, 'base64');
     let bucket = 'semichat';
@@ -45,7 +91,7 @@ router.post('/Registro',async(req, res) => {
       fotoaws = uploadedImage.Location;
     // Value to be inserted
     connection.query(query, [nombreUsuario,
-        correo,contrasenia, fotoaws], (err, rows) => {
+        correo,hash, fotoaws], (err, rows) => {
         if (err) throw err;
         console.log("Row inserted with id = "
             + rows.insertId);
@@ -58,7 +104,7 @@ router.post('/Registro',async(req, res) => {
 });
 
 //Login
-router.post('/Login',async(req, res) => {
+router.post('/Login2',async(req, res) => {
     const connection  = database.Open();
     let {correo,contrasenia} = req.body
     var sql = 'SELECT Personid, nombreUsuario,correo, fotoperfil FROM Usuario WHERE contrasenia = ? and correo = ?';
@@ -89,11 +135,11 @@ router.post('/Login',async(req, res) => {
 }
 
 */
-router.post('/SubirArchivo',async(req, res) => {
+router.post('/Publicacion',async(req, res) => {
     const connection  = database.Open();
-    let {BASE64,CONTENIDO,NOMBRE,PUBLICO,IdUsuario} = req.body
-    let query = `INSERT INTO Archivo 
-        (nombreArchivo, isPublic,URL,Personid) VALUES (?, ? , ?, ?);`;
+    let {BASE64,CONTENIDO,NOMBRE,DESCRIPCION,IdUsuario} = req.body
+    let query = `INSERT INTO Publicacion 
+        (nombrePublicacion, Descripcion,URL,Personid,Label) VALUES (?, ? , ?, ?, ?);`;
     //Subir foto
     let decodedImage = Buffer.from(BASE64, 'base64');
     let bucket = 'semichat';
@@ -113,18 +159,36 @@ router.post('/SubirArchivo',async(req, res) => {
         ContentType: CONTENIDO
       }).promise()
       fotoaws = uploadedImage.Location;
-      // Value to be inserted
-    connection.query(query, [NOMBRE,
-        PUBLICO,fotoaws, IdUsuario], (err, rows) => {
-        if (err) throw err;
-        console.log("Row inserted with id = "
-            + rows.insertId);
-        res.json({
-            message: 'Archivo Subido Correctamente',
-            status : '200',
-            idArchivo : rows.insertId
-        })
+
+    /////Lable Rekogniton
+    var params = {
+        Image: {
+            S3Object: {
+                Bucket : 'semichat',
+                Name: filepath
+            },
+        }
+    }
+    rek.detectLabels(params, function(err, data) {
+        if (err) {
+            console.log(err)
+        }
+        else {
+            label = data.Labels[0].Name
+            connection.query(query, [NOMBRE,
+                DESCRIPCION,fotoaws, IdUsuario,label], (err, rows) => {
+                if (err) throw err;
+                console.log("Row inserted with id = "
+                    + rows.insertId);
+                res.json({
+                    message: 'Archivo Subido Correctamente',
+                    status : '200',
+                    idArchivo : rows.insertId
+                })
+            });
+        }
     });
+    /////
 });
 //AgregarAmigo
 /*
@@ -155,12 +219,7 @@ router.post('/AgregarAmigo',async(req, res) => {
 //Login
 router.get('/Usuarios',async(req, res) => {
     const connection  = database.Open();
-    var sql = 'SELECT u.Personid, u.nombreUsuario,u.correo, u.fotoperfil , IFNULL(sub.conteo, 0) as conteo\n' +
-    '    FROM (select count(1) as conteo,a.personid\n' +
-    '    from Archivo as a \n' +
-    '    where a.isPublic = \'1\'\n' +
-    '    group by a.Personid ) as sub\n' +
-    '    right join Usuario as u on u.Personid = sub.personid';
+    var sql = 'select * from Usuario';
     connection.query(sql, function (err, result) {
         if (result.length == 0){
             res.json({
@@ -175,6 +234,76 @@ router.get('/Usuarios',async(req, res) => {
             })
         }
 })
+});
+
+//Mis Amgios
+router.post('/MisAmigos',async(req, res) => {
+    let idUsuario = req.body.idUsuario;
+    const connection  = database.Open();
+    var sql = 'select u2.nombreUsuario ,u2.correo  \n' +
+        'from Amigos a  \n' +
+        'inner join Usuario u2 on u2.Personid  = a.idAmigoEmisor  \n' +
+        'where a.idAmigoReceptor  = ? \n' +
+        'UNION\n' +
+        'select u2.nombreUsuario ,u2.correo  \n' +
+        'from Amigos a  \n' +
+        'right join Usuario u2 on u2.Personid  = a.idAmigoReceptor  \n' +
+        'where a.idAmigoEmisor  = ? \n' +
+        '\n';
+    connection.query(sql,[idUsuario,idUsuario], function (err, result) {
+        if (result.length == 0){
+            res.json({
+                message: 'Usuario no se encuentra',
+                status : '400'
+            })
+        }else{
+            res.json({
+                message: 'Listado de Usuarios',
+                data : result,
+                status : '200'
+            })
+        }
+    })
+});
+//Labels
+router.post('/Labels',async(req, res) => {
+    const connection  = database.Open();
+    var sql = 'select Label as Item from Publicacion';
+    connection.query(sql, function (err, result) {
+        if (result.length == 0){
+            res.json({
+                message: 'Labels no se encuentra',
+                status : '400'
+            })
+        }else{
+            res.json({
+                message: 'Listado de Labels',
+                data : result,
+                status : '200'
+            })
+        }
+    })
+});
+//Login
+router.post('/getPosts',async(req, res) => {
+    const connection  = database.Open();
+    var sql = 'select pu.idPublicacion,pu.nombrePublicacion,pu.Descripcion,pu.URL,pu.Personid,pu.Label,u.nombreUsuario , u.fotoperfil \n' +
+        'from Publicacion pu\n' +
+        'inner join Usuario u on u.Personid  = pu.Personid';
+    connection.query(sql, function (err, result) {
+        if (result.length == 0){
+            res.json({
+                message: 'Post no se encuentra',
+                status : '400'
+            })
+        }else{
+            res.json({
+                message: 'Listado de Post',
+                data : result,
+                status : '200'
+            })
+        }
+    })
 });
 
 /*
@@ -195,16 +324,15 @@ router.post('/detectarcara', function (req, res) {
                 Bucket : 'semichat',
                 Name: 'Semi/admin_China.jpg'
             },
-        },
-        Attributes: ['ALL']
+        }
     }
-    rek.detectFaces(params, function(err, data) {
+    rek.detectLabels(params, function(err, data) {
         if (err) {
             console.log(err)
             res.json({mensaje: "Error"})
         }
         else {
-            res.json({Deteccion: data});
+            res.json({Deteccion: data.Labels[0].Name});
         }
     });
 });
@@ -212,38 +340,44 @@ router.post('/detectarcara', function (req, res) {
 //Cognito
 //Amazon Cognito
 
-router.post("/api/login", async (req, res) => {
+router.post("/login", async (req, res) => {
     var crypto = require('crypto');
     var hash = crypto.createHash('sha256').update(req.body.password).digest('hex');
-    var authenticationData = {
-        Username: req.body.username,
-        Password: hash+"D**"
-    };
-    var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(
-        authenticationData
-    );
-    var userData = {
-        Username: req.body.username,
-        Pool: cognito,
-    };
-    var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
-    cognitoUser.setAuthenticationFlowType('USER_PASSWORD_AUTH');
+    ////////////////////////////////////////////////////////////////////
+    let idUsuario ;
+    const connection  = database.Open();
+    var sql = 'SELECT Personid, nombreUsuario,correo, fotoperfil FROM Usuario WHERE contrasenia = ? and nombreUsuario = ?';
+    connection.query(sql, [ hash,  req.body.username], function (err, result2) {
+        var authenticationData = {
+            Username: req.body.username,
+            Password: hash+"D**"
+        };
+        var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(
+            authenticationData
+        );
+        var userData = {
+            Username: req.body.username,
+            Pool: cognito,
+        };
+        var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+        cognitoUser.setAuthenticationFlowType('USER_PASSWORD_AUTH');
 
-    cognitoUser.authenticateUser(authenticationDetails, {
-        onSuccess: function (result) {
-            // User authentication was successful
-            res.json(result); //
-        },
-        onFailure: function (err) {
-            // User authentication was not successful
-            res.json(err);
-        },
-        mfaRequired: function (codeDeliveryDetails) {
-            // MFA is required to complete user authentication.
-            // Get the code from user and call
-            cognitoUser.sendMFACode(verificationCode, this);
-        },
-    });
+        cognitoUser.authenticateUser(authenticationDetails, {
+            onSuccess: function (result) {
+                // User authentication was successful
+                res.json({result: result , dataUser : result2})
+            },
+            onFailure: function (err) {
+                // User authentication was not successful
+                res.json(err);
+            },
+            mfaRequired: function (codeDeliveryDetails) {
+                // MFA is required to complete user authentication.
+                // Get the code from user and call
+                cognitoUser.sendMFACode(verificationCode, this);
+            },
+        });
+    })
 });
 
 router.post("/api/signup", async (req, res) => {
@@ -294,7 +428,7 @@ router.post("/api/signup", async (req, res) => {
 Translate
  */
 
-router.post('/translate', (req, res) => {
+router.post('/translate1', (req, res) => {
     let body = req.body
 
     let text = body.text
@@ -314,4 +448,64 @@ router.post('/translate', (req, res) => {
         }
     });
 });
+router.post('/translate2', (req, res) => {
+    let body = req.body
+
+    let text = body.text
+
+    let params = {
+        SourceLanguageCode: 'es',
+        TargetLanguageCode: 'en',
+        Text: text || 'Hello there'
+    };
+    translate.translateText(params, function (err, data) {
+        if (err) {
+            console.log(err, err.stack);
+            res.send({ error: err })
+        } else {
+            console.log(data);
+            res.send({ message: data })
+        }
+    });
+});
+router.post('/translate3', (req, res) => {
+    let body = req.body
+
+    let text = body.text
+
+    let params = {
+        SourceLanguageCode: 'es',
+        TargetLanguageCode: 'fr',
+        Text: text || 'Hello there'
+    };
+    translate.translateText(params, function (err, data) {
+        if (err) {
+            console.log(err, err.stack);
+            res.send({ error: err })
+        } else {
+            console.log(data);
+            res.send({ message: data })
+        }
+    });
+});
+//Texto
+router.post('/detectartexto', function (req, res) {
+    var imagen = req.body.imagen;
+    var params = {
+        /* S3Object: {
+          Bucket: "mybucket",
+          Name: "mysourceimage"
+        }*/
+        Image: {
+            Bytes: Buffer.from(imagen, 'base64')
+        }
+    };
+    rek.detectText(params, function(err, data) {
+        if (err) {res.json({mensaje: "Error"})}
+        else {
+            res.json({texto: data.TextDetections});
+        }
+    });
+});
+
 module.exports = router;

@@ -1,0 +1,26 @@
+version: "3.3"
+services:
+#Servicios
+  servicio_backend:
+      container_name: "apiNode"
+      image: edson2021/grpclientnode:latest
+      restart: always
+      networks:
+        - "red_semi1"
+      build: ./backend/Server  
+      ports:
+        - "3005" 
+
+  servicio_frontend:
+      container_name: "frontend"
+      image: edson2021/semi1_frontend:latest
+      restart: always
+      networks:
+        - "red_semi1"
+      build: ./backend/Client
+      ports:
+        - "4200"
+    
+networks:
+  red_semi1:
+    driver: "bridge"

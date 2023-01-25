@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5f4ecb93-7a6b-4103-8d38-9db69215f193" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/app/components/crud/crud.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/app/components/crud/crud.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/app/services/posts.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/app/services/posts.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/app/services/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/app/services/user.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/AWS/s3keys.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/AWS/s3keys.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/routes/crear.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/routes/crear.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2GyKG1W6oIHdXi2Ggu4Z4XeekOC" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../SistemasOperativos2/SO2_F1_G4/Fase 4/FrontFase4" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="C:\Users\edson\Desktop\Proyectos\Semi1\Semi1-Grupo4-Proyecto2\Client\node_modules\typescript\lib" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5f4ecb93-7a6b-4103-8d38-9db69215f193" name="Changes" comment="" />
+      <created>1667355297164</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1667355297164</updated>
+      <workItem from="1667355300940" duration="10871000" />
+      <workItem from="1667402925680" duration="1776000" />
+      <workItem from="1667440546351" duration="1103000" />
+      <workItem from="1667446749228" duration="16893000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
